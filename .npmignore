@@ -1,0 +1,9 @@
+tsconfig.json
+tslint.json
+.prettierrc
+.eslintignore
+.eslintrc.js
+.DS_Store
+src/
+examples/
+docs/

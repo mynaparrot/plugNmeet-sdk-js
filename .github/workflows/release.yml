@@ -1,0 +1,24 @@
+name: Build and release client
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - name: Build and publish
+        run: |
+          npm install
+          npm run build
+          rsync -ar package.json README.md LICENSE ./dist/
+          cd dist
+          npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
+          npm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
