@@ -1,8 +1,6 @@
 const plugNmeet = require('../dist').PlugNmeet;
+
 (async () => {
-  console.log(plugNmeet)
-
-
   const roomId = "room01"; // must be unique.
   const userFullname = "Your name";
   const userId = "Your-Unique-User-Id"; // must be unique for each user.
@@ -88,6 +86,5 @@ const plugNmeet = require('../dist').PlugNmeet;
       console.log(res.msg)
     }
   }
-
 })()
 
