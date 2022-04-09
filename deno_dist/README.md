@@ -4,8 +4,10 @@ Plug-N-Meet SDK for Deno. You can use this SDK to make API requests to the Plug-
 
 ## Usage
 
+You can change it according to latest version
+
 ```js
-import { PlugNmeet } from 'https://github.com/mynaparrot/plugNmeet-sdk-js/deno_dist/mod.ts';
+import { PlugNmeet } from 'https://deno.land/x/plugnmeet@v1.0.0/mod.ts';
 
 const pnm = new PlugNmeet(
   'http://localhost:8080',
