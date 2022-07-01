@@ -8,6 +8,9 @@ export {
   ChatFeaturesParams,
   SharedNotePadFeaturesParams,
   WhiteboardFeaturesParams,
+  ExternalMediaPlayerFeatures,
+  WaitingRoomFeatures,
+  BreakoutRoomFeatures,
 } from './types/createRoom';
 export {
   JoinTokenParams,
