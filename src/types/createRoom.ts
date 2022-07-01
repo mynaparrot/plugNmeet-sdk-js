@@ -23,8 +23,11 @@ export type RoomFeaturesParams = {
   allow_view_other_webcams: boolean;
   allow_view_other_users_list: boolean;
   chat_features: ChatFeaturesParams;
-  shared_note_pad_features: SharedNotePadFeaturesParams;
-  whiteboard_features: WhiteboardFeaturesParams;
+  shared_note_pad_features?: SharedNotePadFeaturesParams;
+  whiteboard_features?: WhiteboardFeaturesParams;
+  external_media_player_features?: ExternalMediaPlayerFeatures;
+  waiting_room_features?: WaitingRoomFeatures;
+  breakout_room_features?: BreakoutRoomFeatures;
 };
 
 export type ChatFeaturesParams = {
@@ -40,6 +43,19 @@ export type SharedNotePadFeaturesParams = {
 
 export type WhiteboardFeaturesParams = {
   allowed_whiteboard: boolean;
+};
+
+export type ExternalMediaPlayerFeatures = {
+  allowed_external_media_player: boolean;
+};
+
+export type WaitingRoomFeatures = {
+  is_active: boolean;
+  waiting_room_msg?: string;
+};
+
+export type BreakoutRoomFeatures = {
+  is_allow: boolean;
 };
 
 export type LockSettingsParams = {

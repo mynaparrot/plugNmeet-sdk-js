@@ -15,7 +15,7 @@ npm install plugnmeet-sdk-js
 JavaScript:
 
 ```js
-const plugNmeet = require('../dist').PlugNmeet;
+const plugNmeet = require('plugnmeet-sdk-js').PlugNmeet;
 
 // now
 const pnm = new plugNmeet(
