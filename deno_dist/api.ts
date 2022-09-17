@@ -1,4 +1,6 @@
-let headers: HeadersInit, endPoint: string;
+import { hmac } from "https://deno.land/x/hmac@v2.0.1/mod.ts";
+
+let _endPoint: string, _apiKey = "", _apiSecret = "";
 
 export type APIResponse = {
   status: boolean;
@@ -10,12 +12,9 @@ export const prepareAPI = (
   apiKey: string,
   apiSecret: string,
 ) => {
-  headers = {
-    'Content-Type': 'application/json',
-    'API-KEY': apiKey,
-    'API-SECRET': apiSecret,
-  };
-  endPoint = apiEndPointURL;
+  _apiKey = apiKey;
+  _apiSecret = apiSecret;
+  _endPoint = apiEndPointURL;
 };
 
 export const sendRequest = async (path: string, body: any) => {
@@ -24,10 +23,19 @@ export const sendRequest = async (path: string, body: any) => {
     response: undefined,
   };
 
-  const resp = await fetch(`${endPoint}${path}`, {
+  const b = JSON.stringify(body)
+  const signature = hmac('sha256', _apiSecret, b, 'utf8', 'hex');
+
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    'API-KEY': _apiKey,
+    'HASH-SIGNATURE': signature,
+  };
+
+  const resp = await fetch(`${_endPoint}${path}`, {
     method: 'POST',
     headers,
-    body: JSON.stringify(body),
+    body: b,
   });
 
   if (resp.ok) {

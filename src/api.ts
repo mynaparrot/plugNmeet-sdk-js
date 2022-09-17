@@ -1,8 +1,9 @@
 import http from 'http';
 import https, { RequestOptions } from 'https';
+import { createHmac } from 'crypto';
 
 let mainOptions: RequestOptions,
-  isSecure = true;
+  isSecure = true, _apiKey = "", _apiSecret = "";
 
 export type APIResponse = {
   status: boolean;
@@ -14,13 +15,10 @@ export const prepareAPI = (
   apiKey: string,
   apiSecret: string,
 ) => {
-  const headers = {
-    'Content-Type': 'application/json',
-    'API-KEY': apiKey,
-    'API-SECRET': apiSecret,
-  };
-  const url = new URL(apiEndPointURL);
+  _apiKey = apiKey;
+  _apiSecret = apiSecret;
 
+  const url = new URL(apiEndPointURL);
   let port = url.protocol === 'https:' ? 443 : 80;
   isSecure = url.protocol === 'https:' ?? false;
 
@@ -34,8 +32,21 @@ export const prepareAPI = (
     path: url.pathname,
     method: 'POST',
     port,
-    headers,
   };
+};
+
+const prepareHeader = (body: string) => {
+  const signature = createHmac('sha256', _apiSecret)
+    .update(body)
+    .digest('hex');
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'API-KEY': _apiKey,
+    'HASH-SIGNATURE': signature,
+  };
+
+  return headers;
 };
 
 export const sendRequest = async (path: string, body: any) => {
@@ -45,8 +56,11 @@ export const sendRequest = async (path: string, body: any) => {
       response: undefined,
     };
 
+    const chunk = JSON.stringify(body);
+
     const options = { ...mainOptions };
     options.path += path;
+    options.headers = prepareHeader(chunk);
 
     const req = (isSecure ? https : http).request(options, (res) => {
       const body: Array<Uint8Array> = [];
@@ -72,7 +86,7 @@ export const sendRequest = async (path: string, body: any) => {
       resolve(output);
     });
 
-    req.write(JSON.stringify(body));
+    req.write(chunk);
     req.end();
   });
 };
