@@ -31,3 +31,4 @@ Please check `examples` directory to see some examples.
 | [fetchRecordings](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#fetchRecordings)                     | Fetch recordings                     |
 | [deleteRecordings](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#deleteRecordings)                   | Delete recording                     |
 | [getRecordingDownloadToken](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#getRecordingDownloadToken) | Generate token to download recording |
+| [getClientFiles](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#getClientFiles) | Get client's files |

@@ -20,6 +20,7 @@ import {
   RecordingDownloadTokenParams,
   RecordingDownloadTokenResponse,
 } from './types/RecordingDownloadToken';
+import { ClientFilesResponse } from './types/clientFiles';
 
 export class PlugNmeet {
   protected defaultPath = '/auth';
@@ -212,7 +213,7 @@ export class PlugNmeet {
   /**
   * @returns Promise<ClientFilesResponse>
   */
-  public async getClientFiles() {
+  public async getClientFiles(): Promise<ClientFilesResponse> {
     const output = await sendRequest('/getClientFiles', {});
     if (!output.status) {
       return {
