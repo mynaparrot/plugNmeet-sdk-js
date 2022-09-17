@@ -42,5 +42,6 @@ export {
   RecordingDownloadTokenParams,
   RecordingDownloadTokenResponse,
 } from './types/RecordingDownloadToken';
+export { ClientFilesResponse } from './types/clientFiles';
 
 export { PlugNmeet } from './PlugNmeet';

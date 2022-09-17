@@ -210,6 +210,26 @@ export class PlugNmeet {
   }
 
   /**
+  * @returns Promise<ClientFilesResponse>
+  */
+  public async getClientFiles() {
+    const output = await sendRequest('/getClientFiles', {});
+    if (!output.status) {
+      return {
+        status: false,
+        msg: output.response,
+      };
+    }
+
+    return {
+      status: output.response.status,
+      msg: output.response.msg,
+      css: output.response.css,
+      js: output.response.js,
+    };
+  }
+
+  /**
    * Generate token to download recording
    * @param params: RecordingDownloadTokenParams
    * @returns Promise<RecordingDownloadTokenResponse>
