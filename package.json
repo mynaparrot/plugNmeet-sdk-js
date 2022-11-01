@@ -11,7 +11,7 @@
   "author": "Jibon L. Costa",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "18.7.18",
+    "@types/node": "18.11.9",
     "@typescript-eslint/eslint-plugin": "5.40.1",
     "@typescript-eslint/parser": "5.40.1",
     "concurrently": "7.4.0",
