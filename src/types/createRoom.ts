@@ -17,17 +17,24 @@ export type RoomFeaturesParams = {
   allow_webcams: boolean;
   mute_on_start: boolean;
   allow_screen_share: boolean;
-  allow_recording: boolean;
   allow_rtmp: boolean;
   admin_only_webcams: boolean;
   allow_view_other_webcams: boolean;
   allow_view_other_users_list: boolean;
+  recording_features: RecordingFeaturesParams;
   chat_features: ChatFeaturesParams;
   shared_note_pad_features?: SharedNotePadFeaturesParams;
   whiteboard_features?: WhiteboardFeaturesParams;
   external_media_player_features?: ExternalMediaPlayerFeatures;
   waiting_room_features?: WaitingRoomFeatures;
   breakout_room_features?: BreakoutRoomFeatures;
+};
+
+export type RecordingFeaturesParams = {
+  is_allow: boolean;
+  is_allow_cloud: boolean;
+  is_allow_local: boolean;
+  enable_auto_cloud_recording: boolean;
 };
 
 export type ChatFeaturesParams = {
