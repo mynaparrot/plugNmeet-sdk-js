@@ -1,21 +1,23 @@
 {
   "name": "plugnmeet-sdk-js",
-  "version": "1.2.0",
-  "type": "module",
+  "version": "1.2.1",
   "description": "plugNmeet JS SDK",
   "author": "Jibon L. Costa",
   "license": "MIT",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./index.js"
+    "types": "./dist/src/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/cjs/index.js"
   },
-  "typesVersions": {
-    "*": {
-      "index.d.ts": ["index.d.ts"]
-    }
-  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "start": "rm -rf ./dist && concurrently -c \"red,green\" --kill-others \"tsc --watch -p . --outDir ./dist && esw -w --ext '.ts','.js' --fix\"",
-    "build": "rm -rf ./dist && tsc -p . --outDir ./dist",
+    "build": "rm -rf ./dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "build-docs": "typedoc --sort source-order"
   },
   "devDependencies": {

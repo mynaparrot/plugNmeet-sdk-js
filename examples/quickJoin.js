@@ -1,4 +1,4 @@
-const plugNmeet = require('../dist').PlugNmeet;
+const plugNmeet = require('../dist/cjs').PlugNmeet;
 
 (async () => {
   const roomId = "room01"; // must be unique.
