@@ -16,8 +16,6 @@ jobs:
         run: |
           npm install
           npm run build
-          rsync -ar package.json README.md LICENSE ./dist/
-          cd dist
           npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
           npm publish
         env:
