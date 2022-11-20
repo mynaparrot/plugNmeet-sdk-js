@@ -24,11 +24,16 @@ const plugNmeet = require('../dist').PlugNmeet;
         allow_webcams: true,
         mute_on_start: false,
         allow_screen_share: true,
-        allow_recording: true,
         allow_rtmp: true,
         admin_only_webcams: false,
         allow_view_other_webcams: true,
         allow_view_other_users_list: true,
+        recording_features: {
+          is_allow: true,
+          is_allow_cloud: true,
+          is_allow_local: true,
+          enable_auto_cloud_recording: false,
+        },
         chat_features: {
           allow_chat: true,
           allow_file_upload: true,

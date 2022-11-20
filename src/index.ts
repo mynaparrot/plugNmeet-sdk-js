@@ -5,6 +5,7 @@ export {
   CreateRoomResponseRoomInfo,
   LockSettingsParams,
   RoomFeaturesParams,
+  RecordingFeaturesParams,
   ChatFeaturesParams,
   SharedNotePadFeaturesParams,
   WhiteboardFeaturesParams,
