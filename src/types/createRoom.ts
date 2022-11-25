@@ -9,6 +9,7 @@ export type RooMetadata = {
   room_title: string;
   welcome_message?: string;
   webhook_url?: string;
+  logout_url?: string;
   room_features: RoomFeaturesParams;
   default_lock_settings?: LockSettingsParams;
 };
