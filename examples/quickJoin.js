@@ -1,11 +1,11 @@
 const plugNmeet = require('../').PlugNmeet;
 
 (async () => {
-  const roomId = "room01"; // must be unique.
-  const userFullname = "Your name";
-  const userId = "Your-Unique-User-Id"; // must be unique for each user.
+  const roomId = 'room01'; // must be unique.
+  const userFullname = 'Your name';
+  const userId = 'Your-Unique-User-Id'; // must be unique for each user.
   const isAdmin = true; // if this user is admin
-  const host = "http://localhost:8080"
+  const host = 'http://localhost:8080';
 
   const pnm = new plugNmeet(
     host,
@@ -57,9 +57,10 @@ const plugNmeet = require('../').PlugNmeet;
     },
   };
 
-  let isRoomActive = false, hasError = false;
+  let isRoomActive = false,
+    hasError = false;
   let res = await pnm.isRoomActive({
-    room_id: roomId
+    room_id: roomId,
   });
   isRoomActive = res.status;
 
@@ -81,15 +82,14 @@ const plugNmeet = require('../').PlugNmeet;
         user_id: userId,
         is_admin: isAdmin,
         is_hidden: false,
-      }
+      },
     });
 
     if (res.status) {
-      const url = host + "?access_token=" + res.token;
+      const url = host + '?access_token=' + res.token;
       console.log(url);
     } else {
-      console.log(res.msg)
+      console.log(res.msg);
     }
   }
-})()
-
+})();

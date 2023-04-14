@@ -1,4 +1,4 @@
-import { prepareAPI, sendRequest } from './api';
+import { ApiTransport } from './ApiTransport';
 import { CreateRoomParams, CreateRoomResponse } from './types/createRoom';
 import { JoinTokenParams, JoinTokenResponse } from './types/joinToken';
 import { IsRoomActiveParams, IsRoomActiveResponse } from './types/isRoomActive';
@@ -24,6 +24,7 @@ import { ClientFilesResponse } from './types/clientFiles';
 
 export class PlugNmeet {
   protected defaultPath = '/auth';
+  private apiTransport: ApiTransport;
 
   /**
    * @param serverUrl plugNmeet server URL
@@ -31,7 +32,11 @@ export class PlugNmeet {
    * @param apiSecret plugNmeet API_Secret
    */
   constructor(serverUrl: string, apiKey: string, apiSecret: string) {
-    prepareAPI(serverUrl + this.defaultPath, apiKey, apiSecret);
+    this.apiTransport = new ApiTransport(
+      serverUrl + this.defaultPath,
+      apiKey,
+      apiSecret,
+    );
   }
 
   /**
@@ -42,7 +47,7 @@ export class PlugNmeet {
   public async createRoom(
     params: CreateRoomParams,
   ): Promise<CreateRoomResponse> {
-    const output = await sendRequest('/room/create', params);
+    const output = await this.apiTransport.sendRequest('/room/create', params);
     if (!output.status) {
       return {
         status: false,
@@ -65,7 +70,10 @@ export class PlugNmeet {
   public async getJoinToken(
     params: JoinTokenParams,
   ): Promise<JoinTokenResponse> {
-    const output = await sendRequest('/room/getJoinToken', params);
+    const output = await this.apiTransport.sendRequest(
+      '/room/getJoinToken',
+      params,
+    );
     if (!output.status) {
       return {
         status: false,
@@ -88,7 +96,10 @@ export class PlugNmeet {
   public async isRoomActive(
     params: IsRoomActiveParams,
   ): Promise<IsRoomActiveResponse> {
-    const output = await sendRequest('/room/isRoomActive', params);
+    const output = await this.apiTransport.sendRequest(
+      '/room/isRoomActive',
+      params,
+    );
     if (!output.status) {
       return {
         status: false,
@@ -110,7 +121,10 @@ export class PlugNmeet {
   public async getActiveRoomInfo(
     params: ActiveRoomInfoParams,
   ): Promise<ActiveRoomInfoResponse> {
-    const output = await sendRequest('/room/getActiveRoomInfo', params);
+    const output = await this.apiTransport.sendRequest(
+      '/room/getActiveRoomInfo',
+      params,
+    );
     if (!output.status) {
       return {
         status: false,
@@ -130,7 +144,10 @@ export class PlugNmeet {
    * @returns Promise<ActiveRoomsInfoResponse>
    */
   public async getActiveRoomsInfo(): Promise<ActiveRoomsInfoResponse> {
-    const output = await sendRequest('/room/getActiveRoomsInfo', {});
+    const output = await this.apiTransport.sendRequest(
+      '/room/getActiveRoomsInfo',
+      {},
+    );
     if (!output.status) {
       return {
         status: false,
@@ -151,7 +168,7 @@ export class PlugNmeet {
    * @returns Promise<EndRoomResponse>
    */
   public async endRoom(params: EndRoomParams): Promise<EndRoomResponse> {
-    const output = await sendRequest('/room/endRoom', params);
+    const output = await this.apiTransport.sendRequest('/room/endRoom', params);
     if (!output.status) {
       return {
         status: false,
@@ -173,7 +190,10 @@ export class PlugNmeet {
   public async fetchRecordings(
     params: FetchRecordingsParams,
   ): Promise<FetchRecordingsResponse> {
-    const output = await sendRequest('/recording/fetch', params);
+    const output = await this.apiTransport.sendRequest(
+      '/recording/fetch',
+      params,
+    );
     if (!output.status) {
       return {
         status: false,
@@ -196,7 +216,10 @@ export class PlugNmeet {
   public async deleteRecordings(
     params: DeleteRecordingsParams,
   ): Promise<DeleteRecordingsResponse> {
-    const output = await sendRequest('/recording/delete', params);
+    const output = await this.apiTransport.sendRequest(
+      '/recording/delete',
+      params,
+    );
     if (!output.status) {
       return {
         status: false,
@@ -211,10 +234,10 @@ export class PlugNmeet {
   }
 
   /**
-  * @returns Promise<ClientFilesResponse>
-  */
+   * @returns Promise<ClientFilesResponse>
+   */
   public async getClientFiles(): Promise<ClientFilesResponse> {
-    const output = await sendRequest('/getClientFiles', {});
+    const output = await this.apiTransport.sendRequest('/getClientFiles', {});
     if (!output.status) {
       return {
         status: false,
@@ -238,7 +261,10 @@ export class PlugNmeet {
   public async getRecordingDownloadToken(
     params: RecordingDownloadTokenParams,
   ): Promise<RecordingDownloadTokenResponse> {
-    const output = await sendRequest('/recording/getDownloadToken', params);
+    const output = await this.apiTransport.sendRequest(
+      '/recording/getDownloadToken',
+      params,
+    );
     if (!output.status) {
       return {
         status: false,
