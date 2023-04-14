@@ -1,4 +1,4 @@
-const plugNmeet = require('../dist/cjs').PlugNmeet;
+const plugNmeet = require('../').PlugNmeet;
 
 (async () => {
     const pnm = new plugNmeet(
