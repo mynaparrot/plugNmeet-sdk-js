@@ -5,6 +5,7 @@ tslint.json
 .eslintignore
 .eslintrc.js
 .DS_Store
+.parcel-cache
 node_modules/
 src/
 examples/

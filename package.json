@@ -1,36 +1,43 @@
 {
   "name": "plugnmeet-sdk-js",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "plugNmeet JS SDK",
   "author": "Jibon L. Costa",
   "license": "MIT",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "types": "./dist/src/index.d.ts",
-    "import": "./dist/index.js",
-    "require": "./dist/cjs/index.js"
-  },
+  "source": "src/PlugNmeet.ts",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "start": "rm -rf ./dist && concurrently -c \"red,green\" --kill-others \"tsc --watch -p . --outDir ./dist && esw -w --ext '.ts','.js' --fix\"",
-    "build": "rm -rf ./dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "build": "rm -rf ./dist && parcel build",
     "build-docs": "typedoc --sort source-order"
   },
+  "targets": {
+    "node": {
+      "isLibrary": true,
+      "engines": {
+        "node": ">= 16"
+      }
+    }
+  },
   "devDependencies": {
-    "@types/node": "18.11.9",
-    "@typescript-eslint/eslint-plugin": "5.43.0",
-    "@typescript-eslint/parser": "5.43.0",
-    "concurrently": "7.5.0",
-    "eslint": "8.28.0",
-    "eslint-config-prettier": "8.5.0",
+    "@parcel/packager-ts": "^2.8.3",
+    "@parcel/transformer-typescript-types": "^2.8.3",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "5.58.0",
+    "@typescript-eslint/parser": "5.58.0",
+    "concurrently": "8.0.1",
+    "eslint": "8.38.0",
+    "eslint-config-prettier": "8.8.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-watch": "8.0.0",
-    "prettier": "2.7.1",
-    "typedoc": "0.23.23",
-    "typescript": "4.9.3"
+    "parcel": "^2.8.3",
+    "prettier": "2.8.7",
+    "typedoc": "0.24.1",
+    "typescript": "5.0.4"
   }
 }

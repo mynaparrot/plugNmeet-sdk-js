@@ -29,6 +29,8 @@ export type RoomFeaturesParams = {
   external_media_player_features?: ExternalMediaPlayerFeatures;
   waiting_room_features?: WaitingRoomFeatures;
   breakout_room_features?: BreakoutRoomFeatures;
+  display_external_link_features?: DisplayExternalLinkFeatures;
+  ingress_features?: IngressFeatures;
 };
 
 export type RecordingFeaturesParams = {
@@ -65,6 +67,14 @@ export type WaitingRoomFeatures = {
 export type BreakoutRoomFeatures = {
   is_allow: boolean;
 };
+
+export type DisplayExternalLinkFeatures = {
+  is_allow: boolean;
+}
+
+export type IngressFeatures = {
+  is_allow: boolean;
+}
 
 export type LockSettingsParams = {
   lock_microphone?: boolean;
