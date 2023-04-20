@@ -1,6 +1,6 @@
 {
   "name": "plugnmeet-sdk-js",
-  "version": "1.2.4",
+  "version": "1.2.6",
   "description": "plugNmeet JS SDK",
   "author": "Jibon L. Costa",
   "license": "MIT",
@@ -30,9 +30,9 @@
   "devDependencies": {
     "@parcel/packager-ts": "^2.8.3",
     "@parcel/transformer-typescript-types": "^2.8.3",
-    "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "5.58.0",
-    "@typescript-eslint/parser": "5.58.0",
+    "@types/node": "^18.15.12",
+    "@typescript-eslint/eslint-plugin": "5.59.0",
+    "@typescript-eslint/parser": "5.59.0",
     "concurrently": "8.0.1",
     "eslint": "8.38.0",
     "eslint-config-prettier": "8.8.0",
