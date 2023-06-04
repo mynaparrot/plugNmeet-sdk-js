@@ -40,7 +40,7 @@
     "eslint-watch": "8.0.0",
     "parcel": "^2.8.3",
     "prettier": "2.8.7",
-    "typedoc": "0.24.7",
+    "typedoc": "0.24.8",
     "typescript": "5.0.4"
   }
 }
