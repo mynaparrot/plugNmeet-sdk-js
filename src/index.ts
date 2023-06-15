@@ -12,6 +12,8 @@ export {
   ExternalMediaPlayerFeatures,
   WaitingRoomFeatures,
   BreakoutRoomFeatures,
+  DisplayExternalLinkFeatures,
+  IngressFeatures,
   SpeechToTextTranslationFeatures,
   EndToEndEncryptionFeatures,
 } from './types/createRoom';
