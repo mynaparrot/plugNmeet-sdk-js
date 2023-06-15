@@ -31,6 +31,8 @@ export type RoomFeaturesParams = {
   breakout_room_features?: BreakoutRoomFeatures;
   display_external_link_features?: DisplayExternalLinkFeatures;
   ingress_features?: IngressFeatures;
+  speech_to_text_translation_features?: SpeechToTextTranslationFeatures;
+  end_to_end_encryption_features?: EndToEndEncryptionFeatures;
 };
 
 export type RecordingFeaturesParams = {
@@ -70,11 +72,20 @@ export type BreakoutRoomFeatures = {
 
 export type DisplayExternalLinkFeatures = {
   is_allow: boolean;
-}
+};
 
 export type IngressFeatures = {
   is_allow: boolean;
-}
+};
+
+export type SpeechToTextTranslationFeatures = {
+  is_allow: boolean;
+  is_allow_translation: boolean;
+};
+
+export type EndToEndEncryptionFeatures = {
+  is_enabled: boolean;
+};
 
 export type LockSettingsParams = {
   lock_microphone?: boolean;
