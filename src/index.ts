@@ -12,6 +12,8 @@ export {
   ExternalMediaPlayerFeatures,
   WaitingRoomFeatures,
   BreakoutRoomFeatures,
+  SpeechToTextTranslationFeatures,
+  EndToEndEncryptionFeatures,
 } from './types/createRoom';
 export {
   JoinTokenParams,
