@@ -48,5 +48,10 @@ export {
   RecordingDownloadTokenResponse,
 } from './types/RecordingDownloadToken';
 export { ClientFilesResponse } from './types/clientFiles';
-
+export {
+  FetchRoomsInfoResponse,
+  PastRoomInfo,
+  PastRoomInfoResult,
+  FetchPastRoomsInfoParams
+} from './types/fetchPastRoomsInfo'
 export { PlugNmeet } from './PlugNmeet';
