@@ -21,6 +21,7 @@ import {
   RecordingDownloadTokenResponse,
 } from './types/RecordingDownloadToken';
 import { ClientFilesResponse } from './types/clientFiles';
+import { FetchRoomsInfoResponse, FetchPastRoomsInfoParams } from "./types/fetchPastRoomsInfo";
 
 export class PlugNmeet {
   protected defaultPath = '/auth';
@@ -159,6 +160,32 @@ export class PlugNmeet {
       status: output.response.status,
       msg: output.response.msg,
       rooms: output.response.rooms,
+    };
+  }
+
+  /**
+   * Fetch info about past rooms
+   * @param params: FetchPastRoomsInfoParams
+   * @returns Promise<FetchRoomsInfoResponse>
+   */
+  public async fetchPastRoomsInfo(
+    params: FetchPastRoomsInfoParams,
+  ): Promise<FetchRoomsInfoResponse> {
+    const output = await this.apiTransport.sendRequest(
+      '/room/fetchPastRooms',
+      params,
+    );
+    if (!output.status) {
+      return {
+        status: false,
+        msg: output.response,
+      };
+    }
+
+    return {
+      status: output.response.status,
+      msg: output.response.msg,
+      result: output.response.result,
     };
   }
 
