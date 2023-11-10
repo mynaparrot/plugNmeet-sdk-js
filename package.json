@@ -15,8 +15,9 @@
     "README.md"
   ],
   "scripts": {
-    "start": "rm -rf ./dist && concurrently -c \"red,green\" --kill-others \"tsc --watch -p . --outDir ./dist && esw -w --ext '.ts','.js' --fix\"",
+    "start": "rm -rf ./dist && concurrently -c \"red,green\" --kill-others \"tsc --watch -p . --outDir ./dist && esw -w --fix ./src/**/*.{ts,js}\"",
     "build": "rm -rf ./dist && parcel build",
+    "lint": "prettier --write \"./src/**/*.{ts,js}\" && eslint --fix ./src/**/*.{ts,js}",
     "build-docs": "typedoc --sort source-order"
   },
   "targets": {

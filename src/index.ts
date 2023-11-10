@@ -46,12 +46,29 @@ export {
 export {
   RecordingDownloadTokenParams,
   RecordingDownloadTokenResponse,
-} from './types/RecordingDownloadToken';
+} from './types/recordingDownloadToken';
 export { ClientFilesResponse } from './types/clientFiles';
 export {
   FetchRoomsInfoResponse,
   PastRoomInfo,
   PastRoomInfoResult,
-  FetchPastRoomsInfoParams
-} from './types/fetchPastRoomsInfo'
+  FetchPastRoomsInfoParams,
+} from './types/fetchPastRoomsInfo';
+export {
+  FetchAnalyticsParams,
+  FetchAnalyticsResponse,
+  FetchAnalyticsResult,
+  AnalyticsInfo,
+} from './types/fetchAnalytics';
+export {
+  DeleteAnalyticsParams,
+  DeleteAnalyticsResponse,
+} from './types/deleteAnalytics';
+export {
+  AnalyticsDownloadTokenParams,
+  AnalyticsDownloadTokenResponse,
+} from './types/analyticsDownloadToken';
+
+export { PlugNmeetAPI } from './types/PlugNmeetAPI';
+
 export { PlugNmeet } from './PlugNmeet';

@@ -48,6 +48,7 @@ Please check `examples` directory to see some examples.
 | [isRoomActive](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#isRoomActive)                           | To check if room is active or not    |
 | [getActiveRoomInfo](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#getActiveRoomInfo)                 | Get active room information          |
 | [getActiveRoomsInfo](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#getActiveRoomsInfo)               | Get all active rooms                 |
+| [fetchPastRoomsInfo](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#fetchPastRoomsInfo)               | Get past rooms  information                |
 | [endRoom](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#endRoom)                                     | End active room                      |
 | [fetchRecordings](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#fetchRecordings)                     | Fetch recordings                     |
 | [deleteRecordings](https://mynaparrot.github.io/plugNmeet-sdk-js/classes/PlugNmeet.html#deleteRecordings)                   | Delete recording                     |

@@ -22,11 +22,27 @@ import {
 import {
   RecordingDownloadTokenParams,
   RecordingDownloadTokenResponse,
-} from './types/RecordingDownloadToken.ts';
+} from './types/recordingDownloadToken.ts';
 import { ClientFilesResponse } from './types/clientFiles.ts';
-import { FetchPastRoomsInfoParams, FetchRoomsInfoResponse } from "../src";
+import {
+  FetchPastRoomsInfoParams,
+  FetchRoomsInfoResponse,
+} from './types/fetchPastRoomsInfo.ts';
+import {
+  FetchAnalyticsParams,
+  FetchAnalyticsResponse,
+} from './types/fetchAnalytics.ts';
+import {
+  DeleteAnalyticsParams,
+  DeleteAnalyticsResponse,
+} from './types/deleteAnalytics.ts';
+import {
+  AnalyticsDownloadTokenParams,
+  AnalyticsDownloadTokenResponse,
+} from './types/analyticsDownloadToken.ts';
+import { PlugNmeetAPI } from './types/PlugNmeetAPI.ts';
 
-export class PlugNmeet {
+export class PlugNmeet implements PlugNmeetAPI {
   protected defaultPath = '/auth';
   private apiTransport: ApiTransport;
 
@@ -45,7 +61,7 @@ export class PlugNmeet {
 
   /**
    * Create new room
-   * @param params: CreateRoomParams
+   * @param params CreateRoomParams
    * @returns Promise<CreateRoomResponse>
    */
   public async createRoom(
@@ -68,7 +84,7 @@ export class PlugNmeet {
 
   /**
    * Generate join token
-   * @param params: JoinTokenParams
+   * @param params JoinTokenParams
    * @returns Promise<JoinTokenResponse>
    */
   public async getJoinToken(
@@ -94,7 +110,7 @@ export class PlugNmeet {
 
   /**
    * If room is active or not
-   * @param params: IsRoomActiveParams
+   * @param params IsRoomActiveParams
    * @returns Promise<IsRoomActiveResponse>
    */
   public async isRoomActive(
@@ -119,7 +135,7 @@ export class PlugNmeet {
 
   /**
    * Get active room information
-   * @param params: ActiveRoomInfoParams
+   * @param params ActiveRoomInfoParams
    * @returns Promise<ActiveRoomInfoResponse>
    */
   public async getActiveRoomInfo(
@@ -168,7 +184,7 @@ export class PlugNmeet {
 
   /**
    * Fetch info about past rooms
-   * @param params: FetchPastRoomsInfoParams
+   * @param params FetchPastRoomsInfoParams
    * @returns Promise<FetchRoomsInfoResponse>
    */
   public async fetchPastRoomsInfo(
@@ -192,10 +208,9 @@ export class PlugNmeet {
     };
   }
 
-
   /**
    * End active room
-   * @param params: EndRoomParams
+   * @param params EndRoomParams
    * @returns Promise<EndRoomResponse>
    */
   public async endRoom(params: EndRoomParams): Promise<EndRoomResponse> {
@@ -214,8 +229,85 @@ export class PlugNmeet {
   }
 
   /**
+   * Fetch analytics
+   * @param params FetchAnalyticsParams
+   * @returns Promise<FetchAnalyticsResponse>
+   */
+  public async fetchAnalytics(
+    params: FetchAnalyticsParams,
+  ): Promise<FetchAnalyticsResponse> {
+    const output = await this.apiTransport.sendRequest(
+      '/analytics/fetch',
+      params,
+    );
+    if (!output.status) {
+      return {
+        status: false,
+        msg: output.response,
+      };
+    }
+
+    return {
+      status: output.response.status,
+      msg: output.response.msg,
+      result: output.response.result,
+    };
+  }
+
+  /**
+   * Delete analytics
+   * @param params DeleteAnalyticsParams
+   * @returns Promise<DeleteAnalyticsResponse>
+   */
+  public async deleteAnalytics(
+    params: DeleteAnalyticsParams,
+  ): Promise<DeleteAnalyticsResponse> {
+    const output = await this.apiTransport.sendRequest(
+      '/analytics/delete',
+      params,
+    );
+    if (!output.status) {
+      return {
+        status: false,
+        msg: output.response,
+      };
+    }
+
+    return {
+      status: output.response.status,
+      msg: output.response.msg,
+    };
+  }
+
+  /**
+   * Generate token to download recording
+   * @param params AnalyticsDownloadTokenParams
+   * @returns Promise<AnalyticsDownloadTokenResponse>
+   */
+  public async getAnalyticsDownloadToken(
+    params: AnalyticsDownloadTokenParams,
+  ): Promise<AnalyticsDownloadTokenResponse> {
+    const output = await this.apiTransport.sendRequest(
+      '/analytics/getDownloadToken',
+      params,
+    );
+    if (!output.status) {
+      return {
+        status: false,
+        msg: output.response,
+      };
+    }
+
+    return {
+      status: output.response.status,
+      msg: output.response.msg,
+      token: output.response.token,
+    };
+  }
+
+  /**
    * Fetch recordings
-   * @param params: FetchRecordingsParams
+   * @param params FetchRecordingsParams
    * @returns Promise<FetchRecordingsResponse>
    */
   public async fetchRecordings(
@@ -241,7 +333,7 @@ export class PlugNmeet {
 
   /**
    * Delete recording
-   * @param params: DeleteRecordingsParams
+   * @param params DeleteRecordingsParams
    * @returns Promise<DeleteRecordingsResponse>
    */
   public async deleteRecordings(
@@ -266,7 +358,7 @@ export class PlugNmeet {
 
   /**
    * Generate token to download recording
-   * @param params: RecordingDownloadTokenParams
+   * @param params RecordingDownloadTokenParams
    * @returns Promise<RecordingDownloadTokenResponse>
    */
   public async getRecordingDownloadToken(
@@ -291,6 +383,7 @@ export class PlugNmeet {
   }
 
   /**
+   * To get JS & CSS files to build interface
    * @returns Promise<ClientFilesResponse>
    */
   public async getClientFiles(): Promise<ClientFilesResponse> {

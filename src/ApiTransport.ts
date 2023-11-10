@@ -42,13 +42,11 @@ export class ApiTransport {
       .update(body)
       .digest('hex');
 
-    const headers = {
+    return {
       'Content-Type': 'application/json',
       'API-KEY': this.apiKey,
       'HASH-SIGNATURE': signature,
     };
-
-    return headers;
   };
 
   public sendRequest = async (path: string, body: any) => {
