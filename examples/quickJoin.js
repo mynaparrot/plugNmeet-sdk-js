@@ -28,6 +28,10 @@ const plugNmeet = require('../').PlugNmeet;
         admin_only_webcams: false,
         allow_view_other_webcams: true,
         allow_view_other_users_list: true,
+        allow_virtual_bg: true,
+        allow_raise_hand: true,
+        enable_analytics: true,
+        room_duration: 0, // 0 = no limit/unlimited
         recording_features: {
           is_allow: true,
           is_allow_cloud: true,

@@ -22,6 +22,10 @@ export type RoomFeaturesParams = {
   admin_only_webcams: boolean;
   allow_view_other_webcams: boolean;
   allow_view_other_users_list: boolean;
+  room_duration: number;
+  enable_analytics: boolean;
+  allow_virtual_bg: boolean;
+  allow_raise_hand: boolean;
   recording_features: RecordingFeaturesParams;
   chat_features: ChatFeaturesParams;
   shared_note_pad_features?: SharedNotePadFeaturesParams;
@@ -55,6 +59,7 @@ export type SharedNotePadFeaturesParams = {
 
 export type WhiteboardFeaturesParams = {
   allowed_whiteboard: boolean;
+  preload_file?: string;
 };
 
 export type ExternalMediaPlayerFeatures = {
