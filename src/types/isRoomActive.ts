@@ -4,5 +4,6 @@ export type IsRoomActiveParams = {
 
 export type IsRoomActiveResponse = {
   status: boolean;
+  is_active?: boolean;
   msg: string;
 };
