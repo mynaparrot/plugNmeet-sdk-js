@@ -129,6 +129,7 @@ export class PlugNmeet implements PlugNmeetAPI {
 
     return {
       status: output.response.status,
+      is_active: output.response.is_active,
       msg: output.response.msg,
     };
   }

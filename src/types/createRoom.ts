@@ -12,6 +12,8 @@ export type RooMetadata = {
   logout_url?: string;
   room_features: RoomFeaturesParams;
   default_lock_settings?: LockSettingsParams;
+  copyright_conf?: CopyrightConf;
+  extra_data?: string;
 };
 
 export type RoomFeaturesParams = {
@@ -118,4 +120,9 @@ export type CreateRoomResponseRoomInfo = {
   turn_password: string;
   enabled_codecs: Array<any>;
   metadata: string;
+};
+
+export type CopyrightConf = {
+  display: boolean;
+  text: string;
 };

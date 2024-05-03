@@ -66,9 +66,15 @@ const plugNmeet = require('../').PlugNmeet;
   let res = await pnm.isRoomActive({
     room_id: roomId,
   });
-  isRoomActive = res.status;
 
-  if (!isRoomActive) {
+  if (!res.status){
+    hasError = true;
+    console.log(res.msg);
+  }else if (typeof res.is_active !== "undefined"){
+    isRoomActive = res.is_active;
+  }
+
+  if (!isRoomActive && !hasError) {
     res = await pnm.createRoom(roomInfo);
     if (!res.status) {
       hasError = true;
