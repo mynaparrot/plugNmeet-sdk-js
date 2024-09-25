@@ -1,3 +1,5 @@
+import { ActiveRoomInfo } from "./activeRoomInfo.ts"
+
 export type CreateRoomParams = {
   room_id: string;
   max_participants?: number;
@@ -28,6 +30,7 @@ export type RoomFeaturesParams = {
   enable_analytics: boolean;
   allow_virtual_bg: boolean;
   allow_raise_hand: boolean;
+  auto_gen_user_id?: boolean;
   recording_features: RecordingFeaturesParams;
   chat_features: ChatFeaturesParams;
   shared_note_pad_features?: SharedNotePadFeaturesParams;
@@ -92,6 +95,8 @@ export type SpeechToTextTranslationFeatures = {
 
 export type EndToEndEncryptionFeatures = {
   is_enabled: boolean;
+  included_chat_messages?: boolean;
+  included_whiteboard?: boolean;
 };
 
 export type LockSettingsParams = {
@@ -105,24 +110,13 @@ export type LockSettingsParams = {
   lock_chat_file_share?: boolean;
 };
 
-export type CreateRoomResponse = {
-  status: boolean;
-  msg: string;
-  roomInfo?: CreateRoomResponseRoomInfo;
-};
-
-export type CreateRoomResponseRoomInfo = {
-  sid: string;
-  name: string;
-  max_participants: number;
-  empty_timeout: number;
-  creation_time: number;
-  turn_password: string;
-  enabled_codecs: Array<any>;
-  metadata: string;
-};
-
 export type CopyrightConf = {
   display: boolean;
   text: string;
 }
+
+export type CreateRoomResponse = {
+  status: boolean;
+  msg: string;
+  room_info?: ActiveRoomInfo;
+};

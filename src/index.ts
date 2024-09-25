@@ -2,7 +2,6 @@ export {
   RooMetadata,
   CreateRoomParams,
   CreateRoomResponse,
-  CreateRoomResponseRoomInfo,
   LockSettingsParams,
   RoomFeaturesParams,
   RecordingFeaturesParams,

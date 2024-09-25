@@ -75,7 +75,7 @@ export class PlugNmeet implements PlugNmeetAPI {
     return {
       status: output.response.status,
       msg: output.response.msg,
-      roomInfo: output.response.roomInfo,
+      room_info: output.response.room_info,
     };
   }
 
