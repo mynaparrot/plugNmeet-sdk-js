@@ -22,7 +22,7 @@ export class ApiTransport {
 
     const url = new URL(apiEndPointURL);
     let port = url.protocol === 'https:' ? 443 : 80;
-    this.isSecure = url.protocol === 'https:' ?? false;
+    this.isSecure = url.protocol === 'https:' ? true : false;
 
     // use port if supplied with url
     if (url.port) {

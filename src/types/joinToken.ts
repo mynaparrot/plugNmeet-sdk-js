@@ -15,6 +15,10 @@ export type JoinTokenUserInfo = {
 
 export type JoinTokenUserMetadata = {
   profile_pic?: string;
+  record_webcam?: boolean;
+  preferred_lang?: string;
+  ex_user_id?: string;
+  extra_data?: string;
   lock_settings?: LockSettingsParams;
 };
 
