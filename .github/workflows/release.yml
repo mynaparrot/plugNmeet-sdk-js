@@ -1,4 +1,4 @@
-name: Build and release client
+name: Build and release library
 on:
   push:
     branches:
