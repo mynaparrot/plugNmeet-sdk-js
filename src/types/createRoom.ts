@@ -4,10 +4,10 @@ export type CreateRoomParams = {
   room_id: string;
   max_participants?: number;
   empty_timeout?: number;
-  metadata: RooMetadata;
+  metadata: RoomMetadata;
 };
 
-export type RooMetadata = {
+export type RoomMetadata = {
   room_title: string;
   welcome_message?: string;
   webhook_url?: string;

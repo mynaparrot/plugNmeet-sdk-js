@@ -1,5 +1,5 @@
 export {
-  RooMetadata,
+  RoomMetadata,
   CreateRoomParams,
   CreateRoomResponse,
   LockSettingsParams,
