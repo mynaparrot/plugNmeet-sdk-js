@@ -18,24 +18,35 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
       - name: Checkout
-        if: ${{ steps.release.outputs.release_created }}
         uses: actions/checkout@v6
-      - name: setup node
-        if: ${{ steps.release.outputs.release_created }}
-        uses: actions/setup-node@v4
+      - name: Setup buf
+        uses: bufbuild/buf-setup-action@v1
         with:
-          node-version: '20.x'
+          version: latest
+      - name: setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+          registry-url: 'https://registry.npmjs.org/'
       - uses: pnpm/action-setup@v4
         name: Install pnpm
-        if: ${{ steps.release.outputs.release_created }}
         with:
-          version: 9
+          version: latest
       - name: Build and publish
-        if: ${{ steps.release.outputs.release_created }}
         run: |
-          pnpm install
-          pnpm run build
-          npm config set '//registry.npmjs.org/:_authToken' $NPM_TOKEN
-          npm publish
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PUBLISH_TAG="latest" # Default tag for full releases
+          if [ ! ${{ steps.release.outputs.release_created }} ]; then
+            pnpm version prerelease --no-commit-hooks --no-git-tag-version
+            # push changes
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git add .
+            git commit -m "bump beta version"
+            git push
+          
+            PUBLISH_TAG="beta" # Override tag for prereleases
+          fi
+          
+          npm install -g npm@latest
+          # Use the dynamic tag for publishing
+          npm publish --tag $PUBLISH_TAG --provenance
