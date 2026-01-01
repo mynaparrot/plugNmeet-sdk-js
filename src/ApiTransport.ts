@@ -1,5 +1,4 @@
-import http from 'http';
-import https, { RequestOptions } from 'https';
+import axios, { AxiosInstance } from 'axios';
 import { createHmac } from 'crypto';
 
 export type APIResponse = {
@@ -8,33 +7,20 @@ export type APIResponse = {
 };
 
 export class ApiTransport {
-  protected apiEndPointURL: string;
-  protected apiKey: string;
-  protected apiSecret: string;
-
-  private isSecure = false;
-  private mainOptions: RequestOptions = {};
+  private readonly apiKey: string;
+  private readonly apiSecret: string;
+  private axios: AxiosInstance;
 
   constructor(apiEndPointURL: string, apiKey: string, apiSecret: string) {
-    this.apiEndPointURL = apiEndPointURL;
     this.apiKey = apiKey;
     this.apiSecret = apiSecret;
 
-    const url = new URL(apiEndPointURL);
-    let port = url.protocol === 'https:' ? 443 : 80;
-    this.isSecure = url.protocol === 'https:' ? true : false;
-
-    // use port if supplied with url
-    if (url.port) {
-      port = Number(url.port);
-    }
-
-    this.mainOptions = {
-      hostname: url.hostname,
-      path: url.pathname,
-      method: 'POST',
-      port,
-    };
+    this.axios = axios.create({
+      baseURL: apiEndPointURL,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   private prepareHeader = (body: string) => {
@@ -43,51 +29,35 @@ export class ApiTransport {
       .digest('hex');
 
     return {
-      'Content-Type': 'application/json',
       'API-KEY': this.apiKey,
       'HASH-SIGNATURE': signature,
     };
   };
 
-  public sendRequest = async (path: string, body: any) => {
-    return new Promise<APIResponse>((resolve) => {
-      const output: APIResponse = {
-        status: false,
-        response: undefined,
-      };
+  public sendRequest = async (path: string, body: string) => {
+    const output: APIResponse = {
+      status: false,
+      response: undefined,
+    };
 
-      const chunk = JSON.stringify(body);
+    const headers = this.prepareHeader(body);
 
-      const options = { ...this.mainOptions };
-      options.path += path;
-      options.headers = this.prepareHeader(chunk);
-
-      const req = (this.isSecure ? https : http).request(options, (res) => {
-        const body: Array<Uint8Array> = [];
-        res.on('data', (chunk) => body.push(chunk));
-
-        res.on('end', () => {
-          const resString = Buffer.concat(body).toString();
-
-          try {
-            output.status = true;
-            output.response = JSON.parse(resString);
-          } catch (error) {
-            output.status = false;
-            output.response = error;
-          }
-
-          resolve(output);
-        });
+    try {
+      const res = await this.axios.post(path, body, {
+        headers,
+        // Return the raw response string, preventing axios from decoding it.
+        // The protobuf `fromJson` method will handle the parsing.
+        transformResponse: [(data) => data],
       });
-
-      req.on('error', (error) => {
-        output.response = error.message;
-        resolve(output);
-      });
-
-      req.write(chunk);
-      req.end();
-    });
+      output.status = true;
+      output.response = res.data;
+      return output;
+    } catch (error: any) {
+      output.response = error.message;
+      if (error.response) {
+        output.response = error.response.data;
+      }
+      return output;
+    }
   };
 }

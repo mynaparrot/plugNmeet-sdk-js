@@ -1,43 +1,73 @@
+import { create, fromJsonString, toJsonString } from '@bufbuild/protobuf';
+import {
+  CreateRoomReq,
+  CreateRoomRes,
+  GenerateTokenReq,
+  GenerateTokenRes,
+  IsRoomActiveReq,
+  IsRoomActiveRes,
+  GetActiveRoomInfoReq,
+  GetActiveRoomInfoRes,
+  GetActiveRoomsInfoRes,
+  FetchPastRoomsReq,
+  FetchPastRoomsRes,
+  RoomEndReq,
+  RoomEndRes,
+  FetchArtifactsReq,
+  FetchArtifactsRes,
+  DeleteArtifactReq,
+  DeleteArtifactRes,
+  GetArtifactDownloadTokenReq,
+  GetArtifactDownloadTokenRes,
+  ArtifactInfoReq,
+  ArtifactInfoRes,
+  FetchRecordingsReq,
+  FetchRecordingsRes,
+  DeleteRecordingReq,
+  DeleteRecordingRes,
+  GetDownloadTokenReq,
+  GetDownloadTokenRes,
+  RecordingInfoReq,
+  RecordingInfoRes,
+  UpdateRecordingMetadataReq,
+  UpdateRecordingMetadataRes,
+  GetClientFilesRes,
+  CreateRoomReqSchema,
+  CreateRoomResSchema,
+  GenerateTokenReqSchema,
+  GenerateTokenResSchema,
+  IsRoomActiveReqSchema,
+  IsRoomActiveResSchema,
+  GetActiveRoomInfoReqSchema,
+  GetActiveRoomInfoResSchema,
+  GetActiveRoomsInfoResSchema,
+  FetchPastRoomsReqSchema,
+  FetchPastRoomsResSchema,
+  RoomEndReqSchema,
+  RoomEndResSchema,
+  FetchArtifactsReqSchema,
+  FetchArtifactsResSchema,
+  DeleteArtifactReqSchema,
+  DeleteArtifactResSchema,
+  GetArtifactDownloadTokenReqSchema,
+  GetArtifactDownloadTokenResSchema,
+  ArtifactInfoReqSchema,
+  ArtifactInfoResSchema,
+  FetchRecordingsReqSchema,
+  FetchRecordingsResSchema,
+  DeleteRecordingReqSchema,
+  DeleteRecordingResSchema,
+  GetDownloadTokenReqSchema,
+  GetDownloadTokenResSchema,
+  RecordingInfoReqSchema,
+  RecordingInfoResSchema,
+  UpdateRecordingMetadataReqSchema,
+  UpdateRecordingMetadataResSchema,
+  GetClientFilesResSchema,
+} from 'plugnmeet-protocol-js';
+
 import { ApiTransport } from './ApiTransport';
-import { CreateRoomParams, CreateRoomResponse } from './types/createRoom';
-import { JoinTokenParams, JoinTokenResponse } from './types/joinToken';
-import { IsRoomActiveParams, IsRoomActiveResponse } from './types/isRoomActive';
-import {
-  ActiveRoomInfoParams,
-  ActiveRoomInfoResponse,
-} from './types/activeRoomInfo';
-import { ActiveRoomsInfoResponse } from './types/activeRoomsInfo';
-import { EndRoomParams, EndRoomResponse } from './types/endRoom';
-import {
-  FetchRecordingsParams,
-  FetchRecordingsResponse,
-} from './types/fetchRecordings';
-import {
-  DeleteRecordingsParams,
-  DeleteRecordingsResponse,
-} from './types/deleteRecordings';
-import {
-  RecordingDownloadTokenParams,
-  RecordingDownloadTokenResponse,
-} from './types/recordingDownloadToken';
-import { ClientFilesResponse } from './types/clientFiles';
-import {
-  FetchRoomsInfoResponse,
-  FetchPastRoomsInfoParams,
-} from './types/fetchPastRoomsInfo';
-import {
-  FetchAnalyticsParams,
-  FetchAnalyticsResponse,
-} from './types/fetchAnalytics';
-import {
-  DeleteAnalyticsParams,
-  DeleteAnalyticsResponse,
-} from './types/deleteAnalytics';
-import {
-  AnalyticsDownloadTokenParams,
-  AnalyticsDownloadTokenResponse,
-} from './types/analyticsDownloadToken';
-import { PlugNmeetAPI } from './types/PlugNmeetAPI';
+import { PlugNmeetAPI } from './PlugNmeetAPI';
 
 export class PlugNmeet implements PlugNmeetAPI {
   protected defaultPath = '/auth';
@@ -59,345 +89,374 @@ export class PlugNmeet implements PlugNmeetAPI {
   /**
    * Create new room
    * @param params
-   * @returns Promise<CreateRoomResponse>
+   * @returns Promise<CreateRoomRes>
    */
-  public async createRoom(
-    params: CreateRoomParams,
-  ): Promise<CreateRoomResponse> {
-    const output = await this.apiTransport.sendRequest('/room/create', params);
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+  public async createRoom(params: CreateRoomReq): Promise<CreateRoomRes> {
+    const body = create(CreateRoomReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/room/create',
+      toJsonString(CreateRoomReqSchema, body),
+    );
+    const output = create(CreateRoomResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      room_info: output.response.room_info,
-    };
+    return fromJsonString(CreateRoomResSchema, res.response);
   }
 
   /**
    * Generate join token
    * @param params
-   * @returns Promise<JoinTokenResponse>
+   * @returns Promise<GenerateTokenRes>
    */
   public async getJoinToken(
-    params: JoinTokenParams,
-  ): Promise<JoinTokenResponse> {
-    const output = await this.apiTransport.sendRequest(
+    params: GenerateTokenReq,
+  ): Promise<GenerateTokenRes> {
+    const body = create(GenerateTokenReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
       '/room/getJoinToken',
-      params,
+      toJsonString(GenerateTokenReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(GenerateTokenResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      token: output.response.token,
-    };
+    return fromJsonString(GenerateTokenResSchema, res.response);
   }
 
   /**
    * If room is active or not
    * @param params
-   * @returns Promise<IsRoomActiveResponse>
+   * @returns Promise<IsRoomActiveRes>
    */
-  public async isRoomActive(
-    params: IsRoomActiveParams,
-  ): Promise<IsRoomActiveResponse> {
-    const output = await this.apiTransport.sendRequest(
+  public async isRoomActive(params: IsRoomActiveReq): Promise<IsRoomActiveRes> {
+    const body = create(IsRoomActiveReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
       '/room/isRoomActive',
-      params,
+      toJsonString(IsRoomActiveReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(IsRoomActiveResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      is_active: output.response.is_active,
-      msg: output.response.msg,
-    };
+    return fromJsonString(IsRoomActiveResSchema, res.response);
   }
 
   /**
    * Get active room information
    * @param params
-   * @returns Promise<ActiveRoomInfoResponse>
+   * @returns Promise<GetActiveRoomInfoRes>
    */
   public async getActiveRoomInfo(
-    params: ActiveRoomInfoParams,
-  ): Promise<ActiveRoomInfoResponse> {
-    const output = await this.apiTransport.sendRequest(
+    params: GetActiveRoomInfoReq,
+  ): Promise<GetActiveRoomInfoRes> {
+    const body = create(GetActiveRoomInfoReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
       '/room/getActiveRoomInfo',
-      params,
+      toJsonString(GetActiveRoomInfoReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(GetActiveRoomInfoResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      room: output.response.room,
-    };
+    return fromJsonString(GetActiveRoomInfoResSchema, res.response);
   }
 
   /**
    * Get all active rooms
-   * @returns Promise<ActiveRoomsInfoResponse>
+   * @returns Promise<GetActiveRoomsInfoRes>
    */
-  public async getActiveRoomsInfo(): Promise<ActiveRoomsInfoResponse> {
-    const output = await this.apiTransport.sendRequest(
+  public async getActiveRoomsInfo(): Promise<GetActiveRoomsInfoRes> {
+    const res = await this.apiTransport.sendRequest(
       '/room/getActiveRoomsInfo',
-      {},
+      '{}',
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(GetActiveRoomsInfoResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      rooms: output.response.rooms,
-    };
+    return fromJsonString(GetActiveRoomsInfoResSchema, res.response);
   }
 
   /**
    * Fetch info about past rooms
    * @param params
-   * @returns Promise<FetchRoomsInfoResponse>
+   * @returns Promise<FetchPastRoomsRes>
    */
   public async fetchPastRoomsInfo(
-    params: FetchPastRoomsInfoParams,
-  ): Promise<FetchRoomsInfoResponse> {
-    const output = await this.apiTransport.sendRequest(
+    params: FetchPastRoomsReq,
+  ): Promise<FetchPastRoomsRes> {
+    const body = create(FetchPastRoomsReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
       '/room/fetchPastRooms',
-      params,
+      toJsonString(FetchPastRoomsReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(FetchPastRoomsResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      result: output.response.result,
-    };
+    return fromJsonString(FetchPastRoomsResSchema, res.response);
   }
 
   /**
    * End active room
    * @param params
-   * @returns Promise<EndRoomResponse>
+   * @returns Promise<RoomEndRes>
    */
-  public async endRoom(params: EndRoomParams): Promise<EndRoomResponse> {
-    const output = await this.apiTransport.sendRequest('/room/endRoom', params);
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+  public async endRoom(params: RoomEndReq): Promise<RoomEndRes> {
+    const body = create(RoomEndReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/room/endRoom',
+      toJsonString(RoomEndReqSchema, body),
+    );
+    const output = create(RoomEndResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-    };
+    return fromJsonString(RoomEndResSchema, res.response);
   }
 
   /**
-   * Fetch analytics
+   * Fetch artifacts
    * @param params
-   * @returns Promise<FetchAnalyticsResponse>
+   * @returns Promise<FetchArtifactsRes>
    */
-  public async fetchAnalytics(
-    params: FetchAnalyticsParams,
-  ): Promise<FetchAnalyticsResponse> {
-    const output = await this.apiTransport.sendRequest(
-      '/analytics/fetch',
-      params,
+  public async fetchArtifacts(
+    params: FetchArtifactsReq,
+  ): Promise<FetchArtifactsRes> {
+    const body = create(FetchArtifactsReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/artifact/fetch',
+      toJsonString(FetchArtifactsReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(FetchArtifactsResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      result: output.response.result,
-    };
+    return fromJsonString(FetchArtifactsResSchema, res.response);
   }
 
   /**
-   * Delete analytics
+   * Delete artifact
    * @param params
-   * @returns Promise<DeleteAnalyticsResponse>
+   * @returns Promise<DeleteArtifactRes>
    */
-  public async deleteAnalytics(
-    params: DeleteAnalyticsParams,
-  ): Promise<DeleteAnalyticsResponse> {
-    const output = await this.apiTransport.sendRequest(
-      '/analytics/delete',
-      params,
+  public async deleteArtifact(
+    params: DeleteArtifactReq,
+  ): Promise<DeleteArtifactRes> {
+    const body = create(DeleteArtifactReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/artifact/delete',
+      toJsonString(DeleteArtifactReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(DeleteArtifactResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-    };
+    return fromJsonString(DeleteArtifactResSchema, res.response);
   }
 
   /**
-   * Generate token to download recording
+   * Generate token to download Artifact
    * @param params
-   * @returns Promise<AnalyticsDownloadTokenResponse>
+   * @returns Promise<GetArtifactDownloadTokenRes>
    */
-  public async getAnalyticsDownloadToken(
-    params: AnalyticsDownloadTokenParams,
-  ): Promise<AnalyticsDownloadTokenResponse> {
-    const output = await this.apiTransport.sendRequest(
-      '/analytics/getDownloadToken',
-      params,
+  public async getArtifactDownloadToken(
+    params: GetArtifactDownloadTokenReq,
+  ): Promise<GetArtifactDownloadTokenRes> {
+    const body = create(GetArtifactDownloadTokenReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/artifact/getDownloadToken',
+      toJsonString(GetArtifactDownloadTokenReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(GetArtifactDownloadTokenResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      token: output.response.token,
-    };
+    return fromJsonString(GetArtifactDownloadTokenResSchema, res.response);
+  }
+
+  /**
+   * Get Artifact details
+   * @param params
+   * @returns Promise<ArtifactInfoRes>
+   */
+  public async getArtifactInfo(
+    params: ArtifactInfoReq,
+  ): Promise<ArtifactInfoRes> {
+    const body = create(ArtifactInfoReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/artifact/info',
+      toJsonString(ArtifactInfoReqSchema, body),
+    );
+    const output = create(ArtifactInfoResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
+    }
+
+    return fromJsonString(ArtifactInfoResSchema, res.response);
   }
 
   /**
    * Fetch recordings
    * @param params
-   * @returns Promise<FetchRecordingsResponse>
+   * @returns Promise<FetchRecordingsRes>
    */
   public async fetchRecordings(
-    params: FetchRecordingsParams,
-  ): Promise<FetchRecordingsResponse> {
-    const output = await this.apiTransport.sendRequest(
+    params: FetchRecordingsReq,
+  ): Promise<FetchRecordingsRes> {
+    const body = create(FetchRecordingsReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
       '/recording/fetch',
-      params,
+      toJsonString(FetchRecordingsReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(FetchRecordingsResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      result: output.response.result,
-    };
+    return fromJsonString(FetchRecordingsResSchema, res.response);
   }
 
   /**
    * Delete recording
    * @param params
-   * @returns Promise<DeleteRecordingsResponse>
+   * @returns Promise<DeleteRecordingRes>
    */
   public async deleteRecordings(
-    params: DeleteRecordingsParams,
-  ): Promise<DeleteRecordingsResponse> {
-    const output = await this.apiTransport.sendRequest(
+    params: DeleteRecordingReq,
+  ): Promise<DeleteRecordingRes> {
+    const body = create(DeleteRecordingReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
       '/recording/delete',
-      params,
+      toJsonString(DeleteRecordingReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(DeleteRecordingResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-    };
+    return fromJsonString(DeleteRecordingResSchema, res.response);
   }
 
   /**
    * Generate token to download recording
    * @param params
-   * @returns Promise<RecordingDownloadTokenResponse>
+   * @returns Promise<GetDownloadTokenRes>
    */
   public async getRecordingDownloadToken(
-    params: RecordingDownloadTokenParams,
-  ): Promise<RecordingDownloadTokenResponse> {
-    const output = await this.apiTransport.sendRequest(
+    params: GetDownloadTokenReq,
+  ): Promise<GetDownloadTokenRes> {
+    const body = create(GetDownloadTokenReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
       '/recording/getDownloadToken',
-      params,
+      toJsonString(GetDownloadTokenReqSchema, body),
     );
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+    const output = create(GetDownloadTokenResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      token: output.response.token,
-    };
+    return fromJsonString(GetDownloadTokenResSchema, res.response);
+  }
+
+  /**
+   * Update recording metadata info
+   * @param params
+   * @returns Promise<UpdateRecordingMetadataRes>
+   */
+  public async updateRecordingMetadata(
+    params: UpdateRecordingMetadataReq,
+  ): Promise<UpdateRecordingMetadataRes> {
+    const body = create(UpdateRecordingMetadataReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/recording/updateMetadata',
+      toJsonString(UpdateRecordingMetadataReqSchema, body),
+    );
+    const output = create(UpdateRecordingMetadataResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
+    }
+
+    return fromJsonString(UpdateRecordingMetadataResSchema, res.response);
+  }
+
+  /**
+   * Get recording details
+   * @param params
+   * @returns Promise<RecordingInfoRes>
+   */
+  public async getRecordingInfo(
+    params: RecordingInfoReq,
+  ): Promise<RecordingInfoRes> {
+    const body = create(RecordingInfoReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/recording/info',
+      toJsonString(RecordingInfoReqSchema, body),
+    );
+    const output = create(RecordingInfoResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
+    }
+
+    return fromJsonString(RecordingInfoResSchema, res.response);
   }
 
   /**
    * To get JS & CSS files to build interface
-   * @returns Promise<ClientFilesResponse>
+   * @returns Promise<GetClientFilesRes>
    */
-  public async getClientFiles(): Promise<ClientFilesResponse> {
-    const output = await this.apiTransport.sendRequest('/getClientFiles', {});
-    if (!output.status) {
-      return {
-        status: false,
-        msg: output.response,
-      };
+  public async getClientFiles(): Promise<GetClientFilesRes> {
+    const res = await this.apiTransport.sendRequest('/getClientFiles', '{}');
+    const output = create(GetClientFilesResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
     }
 
-    return {
-      status: output.response.status,
-      msg: output.response.msg,
-      css: output.response.css,
-      js: output.response.js,
-    };
+    return fromJsonString(GetClientFilesResSchema, res.response);
   }
 }

@@ -1,0 +1,33 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "unicorn", "typescript", "oxc"],
+  "ignorePatterns": [
+    "dist/",
+    "**/node_modules/",
+    ".git/",
+    "deno_dist/"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "env": {
+    "browser": true
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.{ts,jsx,tsx}"],
+      "rules": {
+        "react-in-jsx-scope": "off",
+        "iframe-missing-sandbox": "off",
+        "consistent-function-scoping": "off",
+        "prefer-add-event-listener": "off",
+        "no-await-in-loop": "off",
+        "no-unused-expressions": "off",
+        "no-array-sort": "off",
+        "no-array-reverse": "off"
+      }
+    }
+  ]
+}

@@ -76,9 +76,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      roomInfo: output.response.roomInfo,
+      status: output.res.status,
+      msg: output.res.msg,
+      roomInfo: output.res.roomInfo,
     };
   }
 
@@ -102,9 +102,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      token: output.response.token,
+      status: output.res.status,
+      msg: output.res.msg,
+      token: output.res.token,
     };
   }
 
@@ -128,9 +128,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      is_active: output.response.is_active,
-      msg: output.response.msg,
+      status: output.res.status,
+      is_active: output.res.is_active,
+      msg: output.res.msg,
     };
   }
 
@@ -154,9 +154,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      room: output.response.room,
+      status: output.res.status,
+      msg: output.res.msg,
+      room: output.res.room,
     };
   }
 
@@ -177,9 +177,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      rooms: output.response.rooms,
+      status: output.res.status,
+      msg: output.res.msg,
+      rooms: output.res.rooms,
     };
   }
 
@@ -203,9 +203,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      result: output.response.result,
+      status: output.res.status,
+      msg: output.res.msg,
+      result: output.res.result,
     };
   }
 
@@ -224,8 +224,8 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
+      status: output.res.status,
+      msg: output.res.msg,
     };
   }
 
@@ -249,9 +249,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      result: output.response.result,
+      status: output.res.status,
+      msg: output.res.msg,
+      result: output.res.result,
     };
   }
 
@@ -275,8 +275,8 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
+      status: output.res.status,
+      msg: output.res.msg,
     };
   }
 
@@ -300,9 +300,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      token: output.response.token,
+      status: output.res.status,
+      msg: output.res.msg,
+      token: output.res.token,
     };
   }
 
@@ -326,9 +326,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      result: output.response.result,
+      status: output.res.status,
+      msg: output.res.msg,
+      result: output.res.result,
     };
   }
 
@@ -352,8 +352,8 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
+      status: output.res.status,
+      msg: output.res.msg,
     };
   }
 
@@ -377,9 +377,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      token: output.response.token,
+      status: output.res.status,
+      msg: output.res.msg,
+      token: output.res.token,
     };
   }
 
@@ -397,10 +397,10 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return {
-      status: output.response.status,
-      msg: output.response.msg,
-      css: output.response.css,
-      js: output.response.js,
+      status: output.res.status,
+      msg: output.res.msg,
+      css: output.res.css,
+      js: output.res.js,
     };
   }
 }

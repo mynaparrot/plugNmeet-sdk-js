@@ -1,4 +1,10 @@
-const plugNmeet = require('../').PlugNmeet;
+const { create } = require('@bufbuild/protobuf');
+const {
+  CreateRoomReqSchema,
+  GenerateTokenReqSchema,
+} = require('plugnmeet-protocol-js');
+
+const { PlugNmeet } = require('../');
 
 (async () => {
   const roomId = 'room01'; // must be unique.
@@ -7,71 +13,71 @@ const plugNmeet = require('../').PlugNmeet;
   const isAdmin = true; // if this user is admin
   const host = 'http://localhost:8080';
 
-  const pnm = new plugNmeet(
+  const pnm = new PlugNmeet(
     host,
     'plugnmeet',
     'zumyyYWqv7KR2kUqvYdq4z4sXg7XTBD2ljT6',
   );
 
-  const roomInfo = {
-    room_id: roomId,
+  const roomInfo = create(CreateRoomReqSchema, {
+    roomId: roomId,
     metadata: {
-      room_title: 'Demo room',
-      welcome_message:
+      roomTitle: 'Demo room',
+      welcomeMessage:
         'Welcome to plugNmeet!<br /> To share microphone click mic icon from bottom left side.',
-      //webhook_url: "http://example.com",
-      room_features: {
-        allow_webcams: true,
-        mute_on_start: false,
-        allow_screen_share: true,
-        allow_rtmp: true,
-        admin_only_webcams: false,
-        allow_view_other_webcams: true,
-        allow_view_other_users_list: true,
-        allow_virtual_bg: true,
-        allow_raise_hand: true,
-        enable_analytics: true,
-        room_duration: 0, // 0 = no limit/unlimited
-        recording_features: {
-          is_allow: true,
-          is_allow_cloud: true,
-          is_allow_local: true,
-          enable_auto_cloud_recording: false,
+      //webhookUrl: "http://example.com",
+      roomFeatures: {
+        allowWebcams: true,
+        muteOnStart: false,
+        allowScreenShare: true,
+        allowRtmp: true,
+        adminOnlyWebcams: false,
+        allowViewOtherWebcams: true,
+        allowViewOtherUsersList: true,
+        allowVirtualBg: true,
+        allowRaiseHand: true,
+        enableAnalytics: true,
+        roomDuration: '0', // 0 = no limit/unlimited
+        recordingFeatures: {
+          isAllow: true,
+          isAllowCloud: true,
+          isAllowLocal: true,
+          enableAutoCloudRecording: false,
         },
-        chat_features: {
-          allow_chat: true,
-          allow_file_upload: true,
-          max_file_size: 50,
-          allowed_file_types: ['jpg', 'png', 'zip'],
+        chatFeatures: {
+          isAllow: true,
+          isAllowFileUpload: true,
+          maxFileSize: '50',
+          allowedFileTypes: ['jpg', 'png', 'zip'],
         },
-        shared_note_pad_features: {
-          allowed_shared_note_pad: true,
+        sharedNotePadFeatures: {
+          isAllow: true,
         },
-        whiteboard_features: {
-          allowed_whiteboard: true,
+        whiteboardFeatures: {
+          isAllow: true,
         },
       },
-      // default_lock_settings: {
-      //     lock_microphone: true,
-      //     lock_screen_sharing: true,
-      //     lock_webcam: true,
-      //     lock_chat_file_share: true,
-      //     lock_chat_send_message: true
+      // defaultLockSettings: {
+      //     lockMicrophone: true,
+      //     lockScreenSharing: true,
+      //     lockWebcam: true,
+      //     lockChatFileShare: true,
+      //     lockChatSendMessage: true
       // }
     },
-  };
+  });
 
   let isRoomActive = false,
     hasError = false;
   let res = await pnm.isRoomActive({
-    room_id: roomId,
+    roomId: roomId,
   });
 
-  if (!res.status){
+  if (!res.status) {
     hasError = true;
     console.log(res.msg);
-  }else if (typeof res.is_active !== "undefined"){
-    isRoomActive = res.is_active;
+  } else if (typeof res.isActive !== 'undefined') {
+    isRoomActive = res.isActive;
   }
 
   if (!isRoomActive && !hasError) {
@@ -85,15 +91,17 @@ const plugNmeet = require('../').PlugNmeet;
   }
 
   if (isRoomActive && !hasError) {
-    res = await pnm.getJoinToken({
-      room_id: roomId,
-      user_info: {
-        name: userFullname,
-        user_id: userId,
-        is_admin: isAdmin,
-        is_hidden: false,
-      },
-    });
+    res = await pnm.getJoinToken(
+      create(GenerateTokenReqSchema, {
+        roomId: roomId,
+        userInfo: {
+          name: userFullname,
+          userId: userId,
+          isAdmin: isAdmin,
+          isHidden: false,
+        },
+      }),
+    );
 
     if (res.status) {
       const url = host + '?access_token=' + res.token;
