@@ -1,9 +1,3 @@
-const { create } = require('@bufbuild/protobuf');
-const {
-  CreateRoomReqSchema,
-  GenerateTokenReqSchema,
-} = require('plugnmeet-protocol-js');
-
 const { PlugNmeet } = require('../');
 
 (async () => {
@@ -19,7 +13,7 @@ const { PlugNmeet } = require('../');
     'zumyyYWqv7KR2kUqvYdq4z4sXg7XTBD2ljT6',
   );
 
-  const roomInfo = create(CreateRoomReqSchema, {
+  const roomInfo =  {
     roomId: roomId,
     metadata: {
       roomTitle: 'Demo room',
@@ -65,7 +59,7 @@ const { PlugNmeet } = require('../');
       //     lockChatSendMessage: true
       // }
     },
-  });
+  };
 
   let isRoomActive = false,
     hasError = false;
@@ -91,8 +85,7 @@ const { PlugNmeet } = require('../');
   }
 
   if (isRoomActive && !hasError) {
-    res = await pnm.getJoinToken(
-      create(GenerateTokenReqSchema, {
+    res = await pnm.getJoinToken({
         roomId: roomId,
         userInfo: {
           name: userFullname,
@@ -100,7 +93,7 @@ const { PlugNmeet } = require('../');
           isAdmin: isAdmin,
           isHidden: false,
         },
-      }),
+      }
     );
 
     if (res.status) {
