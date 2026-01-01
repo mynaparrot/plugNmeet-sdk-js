@@ -45,5 +45,7 @@ jobs:
           fi
           
           npm install -g npm@latest
+          pnpm install
+          pnpm run build
           # Use the dynamic tag for publishing
-          npm publish --tag $PUBLISH_TAG --provenance
+          pnpm publish --tag $PUBLISH_TAG --provenance
