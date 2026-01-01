@@ -1,9 +1,8 @@
 tsconfig.json
 tsconfig-cjs.json
 tslint.json
-.prettierrc
-.eslintignore
-.eslintrc.js
+.prettierrc.json
+.oxlintrc.json
 .DS_Store
 .parcel-cache
 node_modules/
