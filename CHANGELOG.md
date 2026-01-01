@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.0.0...v2.0.1) (2026-01-01)
+
+
+### Bug Fixes
+
+* clean up ([7327ab5](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/7327ab5f73b9d07bec9a4d115e5e7446acb7ffd5))
+* missing package files ([f33d5dc](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/f33d5dca08d20a430e5fc8aae89e15a93ca2c0d2))
+
 ## [2.0.0](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v1.4.1...v2.0.0) (2026-01-01)
 
 
