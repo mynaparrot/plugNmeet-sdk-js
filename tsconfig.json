@@ -13,14 +13,13 @@
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["dist"],
   "include": ["src/**/*"],
   "typedocOptions": {
     "entryPoints": ["src/index.ts"],
     "excludeInternal": true,
     "excludePrivate": true,
     "excludeProtected": true,
-    "excludeExternals": true,
     "includeVersion": true,
     "name": "plugNmeet JS SDK"
   }

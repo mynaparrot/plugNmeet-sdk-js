@@ -20,7 +20,7 @@
     "lint": "oxlint --config=./.oxlintrc.json --fix",
     "lint:check": "oxlint --config=./.oxlintrc.json",
     "format:check": "prettier --check src/**/*.{jsx,ts,tsx}",
-    "build-docs": "typedoc --sort source-order"
+    "build-docs": "typedoc --entryPointStrategy expand --sort source-order"
   },
   "targets": {
     "node": {
