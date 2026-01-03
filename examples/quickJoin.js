@@ -10,7 +10,7 @@ const {
   const userFullname = 'Your name';
   const userId = 'Your-Unique-User-Id'; // must be unique for each user.
   const isAdmin = true; // if this user is admin
-  const host = 'http://localhost:8888';
+  const host = 'http://localhost:8080';
 
   const pnm = new PlugNmeet(
     host,
