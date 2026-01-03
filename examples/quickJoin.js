@@ -1,17 +1,16 @@
-const { create } = require('@bufbuild/protobuf');
 const {
+  PlugNmeet,
+  createRequest,
   CreateRoomReqSchema,
   GenerateTokenReqSchema,
-} = require('plugnmeet-protocol-js');
-
-const { PlugNmeet } = require('../');
+} = require('../');
 
 (async () => {
   const roomId = 'room01'; // must be unique.
   const userFullname = 'Your name';
   const userId = 'Your-Unique-User-Id'; // must be unique for each user.
   const isAdmin = true; // if this user is admin
-  const host = 'http://localhost:8080';
+  const host = 'http://localhost:8888';
 
   const pnm = new PlugNmeet(
     host,
@@ -19,7 +18,7 @@ const { PlugNmeet } = require('../');
     'zumyyYWqv7KR2kUqvYdq4z4sXg7XTBD2ljT6',
   );
 
-  const roomInfo = create(CreateRoomReqSchema, {
+  const roomInfo = createRequest(CreateRoomReqSchema, {
     roomId: roomId,
     metadata: {
       roomTitle: 'Demo room',
@@ -91,17 +90,16 @@ const { PlugNmeet } = require('../');
   }
 
   if (isRoomActive && !hasError) {
-    res = await pnm.getJoinToken(
-      create(GenerateTokenReqSchema, {
-        roomId: roomId,
-        userInfo: {
-          name: userFullname,
-          userId: userId,
-          isAdmin: isAdmin,
-          isHidden: false,
-        },
-      }),
-    );
+    const tokenInfo = createRequest(GenerateTokenReqSchema, {
+      roomId: roomId,
+      userInfo: {
+        name: userFullname,
+        userId: userId,
+        isAdmin: isAdmin,
+        isHidden: false,
+      },
+    });
+    res = await pnm.getJoinToken(tokenInfo);
 
     if (res.status) {
       const url = host + '?access_token=' + res.token;
