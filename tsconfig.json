@@ -14,13 +14,5 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": ["dist"],
-  "include": ["src/**/*"],
-  "typedocOptions": {
-    "entryPoints": ["src/index.ts"],
-    "excludeInternal": true,
-    "excludePrivate": true,
-    "excludeProtected": true,
-    "includeVersion": true,
-    "name": "plugNmeet JS SDK"
-  }
+  "include": ["src/**/*"]
 }
