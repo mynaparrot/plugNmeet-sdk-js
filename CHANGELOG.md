@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.2](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.0.1...v2.0.2) (2026-01-03)
+
+
+### Bug Fixes
+
+* better show example with protobuf ([2f9f3ce](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/2f9f3ce3269da72377337b413973a2c7a92bb69b))
+* better way to handle everything from SDK ([2c68f91](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/2c68f919061d4c44bac5037aa93361f612ec4f67))
+* doc wasn't generating properly ([c638093](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/c638093301b74f734ab186f33de9fba9d64907ed))
+
 ## [2.0.1](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.0.0...v2.0.1) (2026-01-01)
 
 
