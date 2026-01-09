@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.3](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.0.2...v2.0.3) (2026-01-09)
+
+
+### Bug Fixes
+
+* bump proto ([3b27370](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/3b27370fbe5138823cba94e30d341d98ba5da7d3))
+* doc wasn't displaying external enums ([558b0d0](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/558b0d063aefd952dfb607e245718974f6037ef1))
+
 ## [2.0.2](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.0.1...v2.0.2) (2026-01-03)
 
 
