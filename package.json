@@ -33,7 +33,7 @@
   "dependencies": {
     "@bufbuild/protobuf": "2.10.2",
     "axios": "1.13.2",
-    "plugnmeet-protocol-js": "1.1.1-1"
+    "plugnmeet-protocol-js": "1.1.1-4"
   },
   "devDependencies": {
     "@parcel/packager-ts": "2.16.3",
