@@ -43,7 +43,7 @@
     "oxlint": "1.43.0",
     "parcel": "2.16.4",
     "prettier": "3.8.1",
-    "typedoc": "0.28.16",
+    "typedoc": "0.28.17",
     "typescript": "5.9.3"
   }
 }
