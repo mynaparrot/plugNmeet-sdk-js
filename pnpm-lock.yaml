@@ -23,7 +23,7 @@ importers:
         version: 2.16.4(@parcel/core@2.16.4)
       '@parcel/transformer-typescript-types':
         specifier: 2.16.4
-        version: 2.16.4(@parcel/core@2.16.4)(typescript@5.9.3)
+        version: 2.16.4(@parcel/core@2.16.4)(typescript@6.0.3)
       '@prettier/plugin-oxc':
         specifier: 0.1.3
         version: 0.1.3
@@ -41,10 +41,10 @@ importers:
         version: 3.8.1
       typedoc:
         specifier: 0.28.16
-        version: 0.28.16(typescript@5.9.3)
+        version: 0.28.16(typescript@6.0.3)
       typescript:
-        specifier: 5.9.3
-        version: 5.9.3
+        specifier: 6.0.3
+        version: 6.0.3
 
 packages:
 
@@ -1198,8 +1198,8 @@ packages:
     peerDependencies:
       typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x || 5.9.x
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1938,23 +1938,23 @@ snapshots:
       - '@parcel/core'
       - napi-wasm
 
-  '@parcel/transformer-typescript-types@2.16.4(@parcel/core@2.16.4)(typescript@5.9.3)':
+  '@parcel/transformer-typescript-types@2.16.4(@parcel/core@2.16.4)(typescript@6.0.3)':
     dependencies:
       '@parcel/diagnostic': 2.16.4
       '@parcel/plugin': 2.16.4(@parcel/core@2.16.4)
       '@parcel/source-map': 2.1.1
-      '@parcel/ts-utils': 2.16.4(typescript@5.9.3)
+      '@parcel/ts-utils': 2.16.4(typescript@6.0.3)
       '@parcel/utils': 2.16.4
       nullthrows: 1.1.1
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - '@parcel/core'
       - napi-wasm
 
-  '@parcel/ts-utils@2.16.4(typescript@5.9.3)':
+  '@parcel/ts-utils@2.16.4(typescript@6.0.3)':
     dependencies:
       nullthrows: 1.1.1
-      typescript: 5.9.3
+      typescript: 6.0.3
 
   '@parcel/types-internal@2.16.4':
     dependencies:
@@ -2537,16 +2537,16 @@ snapshots:
 
   type-fest@0.20.2: {}
 
-  typedoc@0.28.16(typescript@5.9.3):
+  typedoc@0.28.16(typescript@6.0.3):
     dependencies:
       '@gerrit0/mini-shiki': 3.20.0
       lunr: 2.3.9
       markdown-it: 14.1.0
       minimatch: 9.0.5
-      typescript: 5.9.3
+      typescript: 6.0.3
       yaml: 2.8.1
 
-  typescript@5.9.3: {}
+  typescript@6.0.3: {}
 
   uc.micro@2.1.0: {}
 

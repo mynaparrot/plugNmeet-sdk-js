@@ -44,6 +44,6 @@
     "parcel": "2.16.4",
     "prettier": "3.8.1",
     "typedoc": "0.28.16",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   }
 }
