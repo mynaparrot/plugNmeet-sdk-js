@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.1.1...v2.1.2) (2026-04-23)
+
+
+### Bug Fixes
+
+* bump deps ([f1533d1](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/f1533d114ecd52a1ff22c1c3e85be4eb3747a845))
+
 ## [2.1.1](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.1.0...v2.1.1) (2026-02-09)
 
 
