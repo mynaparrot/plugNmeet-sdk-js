@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.3](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.1.2...v2.1.3) (2026-04-23)
+
+
+### Bug Fixes
+
+* ci error ([6383e72](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/6383e729f9bd50649c52d91559a942234da8beb7))
+* ci error ([346f7d3](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/346f7d39643661017eadf0c87a2892c05fcfb385))
+* type error ([9a6da0a](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/9a6da0a846f6b7b3130c51f77ae1658bdc5f4cb9))
+
 ## [2.1.2](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.1.1...v2.1.2) (2026-04-23)
 
 
