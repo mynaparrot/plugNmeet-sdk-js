@@ -31,7 +31,7 @@
     }
   },
   "dependencies": {
-    "@bufbuild/protobuf": "2.11.0",
+    "@bufbuild/protobuf": "2.12.0",
     "axios": "1.15.2",
     "plugnmeet-protocol-js": "1.2.2-20"
   },
