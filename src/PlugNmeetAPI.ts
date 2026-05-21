@@ -1,37 +1,46 @@
 import {
+  ArtifactInfoReq,
+  ArtifactInfoRes,
+  BroadcastToRoomReq,
+  CommonResponse,
   CreateRoomReq,
   CreateRoomRes,
+  DeleteArtifactReq,
+  DeleteArtifactRes,
+  DeleteRecordingReq,
+  DeleteRecordingRes,
+  FetchArtifactsReq,
+  FetchArtifactsRes,
+  FetchPastRoomsReq,
+  FetchPastRoomsRes,
+  FetchRecordingsReq,
+  FetchRecordingsRes,
   GenerateTokenReq,
   GenerateTokenRes,
-  IsRoomActiveReq,
-  IsRoomActiveRes,
   GetActiveRoomInfoReq,
   GetActiveRoomInfoRes,
   GetActiveRoomsInfoRes,
-  FetchPastRoomsReq,
-  FetchPastRoomsRes,
-  RoomEndReq,
-  RoomEndRes,
-  FetchArtifactsReq,
-  FetchArtifactsRes,
-  DeleteArtifactReq,
-  DeleteArtifactRes,
   GetArtifactDownloadTokenReq,
   GetArtifactDownloadTokenRes,
-  ArtifactInfoReq,
-  ArtifactInfoRes,
-  FetchRecordingsReq,
-  FetchRecordingsRes,
-  DeleteRecordingReq,
-  DeleteRecordingRes,
+  GetClientFilesRes,
   GetDownloadTokenReq,
   GetDownloadTokenRes,
+  IsRoomActiveReq,
+  IsRoomActiveRes,
   RecordingInfoReq,
   RecordingInfoRes,
+  RoomEndReq,
+  RoomEndRes,
   UpdateRecordingMetadataReq,
   UpdateRecordingMetadataRes,
-  GetClientFilesRes,
 } from 'plugnmeet-protocol-js';
+
+export interface UploadWhiteboardFileReq {
+  roomId: string;
+  // You must provide either `filePath` or `document_link`, but not both.
+  filePath?: string; // The local full file path to the document.
+  document_link?: string;
+}
 
 export interface PlugNmeetAPI {
   /**
@@ -78,6 +87,20 @@ export interface PlugNmeetAPI {
    */
   endRoom(params: RoomEndReq): Promise<RoomEndRes>;
   /**
+   * Broadcast messages or notifications directly into an active Plug-N-Meet session in real-time.
+   * @param params
+   * @returns Promise<CommonResponse>
+   */
+  broadcastToRoom(params: BroadcastToRoomReq): Promise<CommonResponse>;
+  /**
+   * Upload a file to be used on the whiteboard.
+   * @param params
+   * @returns Promise<CommonResponse>
+   */
+  uploadWhiteboardFile(
+    params: UploadWhiteboardFileReq,
+  ): Promise<CommonResponse>;
+  /**
    * Fetch artifacts
    * @param params
    * @returns Promise<FetchArtifactsRes>
@@ -92,7 +115,7 @@ export interface PlugNmeetAPI {
   /**
    * Generate token to download Artifact
    * @param params
-   * @returns Promise<AnalyticsDownloadTokenResponse>
+   * @returns Promise<GetArtifactDownloadTokenRes>
    */
   getArtifactDownloadToken(
     params: GetArtifactDownloadTokenReq,

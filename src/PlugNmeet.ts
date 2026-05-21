@@ -1,73 +1,80 @@
 import { create, fromJsonString, toJsonString } from '@bufbuild/protobuf';
+import { createReadStream, existsSync } from 'fs';
+import FormData from 'form-data';
 import {
-  CreateRoomReq,
-  CreateRoomRes,
-  GenerateTokenReq,
-  GenerateTokenRes,
-  IsRoomActiveReq,
-  IsRoomActiveRes,
-  GetActiveRoomInfoReq,
-  GetActiveRoomInfoRes,
-  GetActiveRoomsInfoRes,
-  FetchPastRoomsReq,
-  FetchPastRoomsRes,
-  RoomEndReq,
-  RoomEndRes,
-  FetchArtifactsReq,
-  FetchArtifactsRes,
-  DeleteArtifactReq,
-  DeleteArtifactRes,
-  GetArtifactDownloadTokenReq,
-  GetArtifactDownloadTokenRes,
   ArtifactInfoReq,
-  ArtifactInfoRes,
-  FetchRecordingsReq,
-  FetchRecordingsRes,
-  DeleteRecordingReq,
-  DeleteRecordingRes,
-  GetDownloadTokenReq,
-  GetDownloadTokenRes,
-  RecordingInfoReq,
-  RecordingInfoRes,
-  UpdateRecordingMetadataReq,
-  UpdateRecordingMetadataRes,
-  GetClientFilesRes,
-  CreateRoomReqSchema,
-  CreateRoomResSchema,
-  GenerateTokenReqSchema,
-  GenerateTokenResSchema,
-  IsRoomActiveReqSchema,
-  IsRoomActiveResSchema,
-  GetActiveRoomInfoReqSchema,
-  GetActiveRoomInfoResSchema,
-  GetActiveRoomsInfoResSchema,
-  FetchPastRoomsReqSchema,
-  FetchPastRoomsResSchema,
-  RoomEndReqSchema,
-  RoomEndResSchema,
-  FetchArtifactsReqSchema,
-  FetchArtifactsResSchema,
-  DeleteArtifactReqSchema,
-  DeleteArtifactResSchema,
-  GetArtifactDownloadTokenReqSchema,
-  GetArtifactDownloadTokenResSchema,
   ArtifactInfoReqSchema,
+  ArtifactInfoRes,
   ArtifactInfoResSchema,
-  FetchRecordingsReqSchema,
-  FetchRecordingsResSchema,
+  BroadcastToRoomReq,
+  BroadcastToRoomReqSchema,
+  CommonResponse,
+  CommonResponseSchema,
+  CreateRoomReq,
+  CreateRoomReqSchema,
+  CreateRoomRes,
+  CreateRoomResSchema,
+  DeleteArtifactReq,
+  DeleteArtifactReqSchema,
+  DeleteArtifactRes,
+  DeleteArtifactResSchema,
+  DeleteRecordingReq,
   DeleteRecordingReqSchema,
+  DeleteRecordingRes,
   DeleteRecordingResSchema,
-  GetDownloadTokenReqSchema,
-  GetDownloadTokenResSchema,
-  RecordingInfoReqSchema,
-  RecordingInfoResSchema,
-  UpdateRecordingMetadataReqSchema,
-  UpdateRecordingMetadataResSchema,
+  FetchArtifactsReq,
+  FetchArtifactsReqSchema,
+  FetchArtifactsRes,
+  FetchArtifactsResSchema,
+  FetchPastRoomsReq,
+  FetchPastRoomsReqSchema,
+  FetchPastRoomsRes,
+  FetchPastRoomsResSchema,
+  FetchRecordingsReq,
+  FetchRecordingsReqSchema,
+  FetchRecordingsRes,
+  FetchRecordingsResSchema,
+  GenerateTokenReq,
+  GenerateTokenReqSchema,
+  GenerateTokenRes,
+  GenerateTokenResSchema,
+  GetActiveRoomInfoReq,
+  GetActiveRoomInfoReqSchema,
+  GetActiveRoomInfoRes,
+  GetActiveRoomInfoResSchema,
+  GetActiveRoomsInfoRes,
+  GetActiveRoomsInfoResSchema,
+  GetArtifactDownloadTokenReq,
+  GetArtifactDownloadTokenReqSchema,
+  GetArtifactDownloadTokenRes,
+  GetArtifactDownloadTokenResSchema,
+  GetClientFilesRes,
   GetClientFilesResSchema,
+  GetDownloadTokenReq,
+  GetDownloadTokenReqSchema,
+  GetDownloadTokenRes,
+  GetDownloadTokenResSchema,
+  IsRoomActiveReq,
+  IsRoomActiveReqSchema,
+  IsRoomActiveRes,
+  IsRoomActiveResSchema,
+  RecordingInfoReq,
+  RecordingInfoReqSchema,
+  RecordingInfoRes,
+  RecordingInfoResSchema,
+  RoomEndReq,
+  RoomEndReqSchema,
+  RoomEndRes,
+  RoomEndResSchema,
+  StatusCode,
+  UpdateRecordingMetadataReq,
+  UpdateRecordingMetadataReqSchema,
+  UpdateRecordingMetadataRes,
+  UpdateRecordingMetadataResSchema,
 } from 'plugnmeet-protocol-js';
 
 import { ApiTransport } from './ApiTransport';
-import { PlugNmeetAPI } from './PlugNmeetAPI';
+import { PlugNmeetAPI, UploadWhiteboardFileReq } from './PlugNmeetAPI';
 
 export class PlugNmeet implements PlugNmeetAPI {
   protected defaultPath = '/auth';
@@ -235,6 +242,68 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return fromJsonString(RoomEndResSchema, res.response);
+  }
+
+  /**
+   * Broadcast messages or notifications directly into an active Plug-N-Meet session in real-time.
+   * @param params
+   * @returns Promise<CommonResponse>
+   */
+  public async broadcastToRoom(
+    params: BroadcastToRoomReq,
+  ): Promise<CommonResponse> {
+    const body = create(BroadcastToRoomReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/room/broadcastToRoom',
+      toJsonString(BroadcastToRoomReqSchema, body),
+    );
+    const output = create(CommonResponseSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
+    }
+
+    return fromJsonString(CommonResponseSchema, res.response);
+  }
+
+  /**
+   * Upload a file to be used on the whiteboard.
+   * @param params
+   * @returns Promise<CommonResponse>
+   */
+  public async uploadWhiteboardFile(
+    params: UploadWhiteboardFileReq,
+  ): Promise<CommonResponse> {
+    const output = create(CommonResponseSchema, {
+      statusCode: StatusCode.INVALID_PARAMETERS,
+    });
+    const formData = new FormData();
+    if (params.filePath) {
+      if (!existsSync(params.filePath)) {
+        output.msg = "The provided 'filePath' is not a valid file path.";
+        return output;
+      }
+      formData.append('document', createReadStream(params.filePath));
+    } else if (params.document_link) {
+      formData.append('document_link', params.document_link);
+    } else {
+      output.msg = 'Either filePath or document_link is required';
+      return output;
+    }
+
+    const res = await this.apiTransport.sendMultipartRequest(
+      '/room/uploadWhiteboardFile',
+      params.roomId,
+      formData,
+    );
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
+    }
+
+    return fromJsonString(CommonResponseSchema, res.response);
   }
 
   /**
