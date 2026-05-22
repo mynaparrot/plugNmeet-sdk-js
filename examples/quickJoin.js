@@ -29,7 +29,6 @@ const {
         allowWebcams: true,
         muteOnStart: false,
         allowScreenShare: true,
-        allowRtmp: true,
         adminOnlyWebcams: false,
         allowViewOtherWebcams: true,
         allowViewOtherUsersList: true,
@@ -42,6 +41,10 @@ const {
           isAllowCloud: true,
           isAllowLocal: true,
           enableAutoCloudRecording: false,
+        },
+        external_broadcasting_features: {
+          is_allow: true,
+          is_allow_rtmp: true,
         },
         chatFeatures: {
           isAllow: true,

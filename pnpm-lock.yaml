@@ -18,8 +18,8 @@ importers:
         specifier: 4.0.5
         version: 4.0.5
       plugnmeet-protocol-js:
-        specifier: 1.2.2-25
-        version: 1.2.2-25(@bufbuild/protobuf@2.12.0)
+        specifier: 1.2.2-29
+        version: 1.2.2-29(@bufbuild/protobuf@2.12.0)
     devDependencies:
       '@parcel/packager-ts':
         specifier: 2.16.4
@@ -1287,8 +1287,8 @@ packages:
     resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
     engines: {node: '>=12'}
 
-  plugnmeet-protocol-js@1.2.2-25:
-    resolution: {integrity: sha512-biQgIgIq2Kw2/7xojcfwg+3nnA55jpmIJAUy7dlP7MKxzXA5s/xTGnswMa/jG3DxjQZvzO5aOPL/rrju157gyA==}
+  plugnmeet-protocol-js@1.2.2-29:
+    resolution: {integrity: sha512-IXPWYnxgKtGuV1hPvqWvjp1FdRf0T5ZZbwKJ6DyzsBmbBNdEXt8YCAq4DUJl4wkD7J2JC1Ay1sF7uNTRlTlieg==}
     peerDependencies:
       '@bufbuild/protobuf': ^2.12.0
 
@@ -2739,7 +2739,7 @@ snapshots:
 
   picomatch@4.0.4: {}
 
-  plugnmeet-protocol-js@1.2.2-25(@bufbuild/protobuf@2.12.0):
+  plugnmeet-protocol-js@1.2.2-29(@bufbuild/protobuf@2.12.0):
     dependencies:
       '@bufbuild/protobuf': 2.12.0
 

@@ -4,3 +4,5 @@ allowBuilds:
   lmdb: false
   msgpackr-extract: false
   plugnmeet-protocol-js: true
+minimumReleaseAgeExclude:
+  - plugnmeet-protocol-js@1.2.2-29
