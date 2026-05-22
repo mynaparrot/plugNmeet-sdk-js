@@ -34,7 +34,7 @@
     "@bufbuild/protobuf": "2.12.0",
     "axios": "1.16.1",
     "form-data": "4.0.5",
-    "plugnmeet-protocol-js": "1.2.2-29"
+    "plugnmeet-protocol-js": "1.2.2-30"
   },
   "devDependencies": {
     "@parcel/packager-ts": "2.16.4",
