@@ -58,6 +58,8 @@ import {
   IsRoomActiveReqSchema,
   IsRoomActiveRes,
   IsRoomActiveResSchema,
+  MergeRecordingsReq,
+  MergeRecordingsReqSchema,
   RecordingInfoReq,
   RecordingInfoReqSchema,
   RecordingInfoRes,
@@ -488,6 +490,29 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return fromJsonString(UpdateRecordingMetadataResSchema, res.response);
+  }
+
+  /**
+   * Merge multiple parts of a session's recording into a single new recording.
+   * @param params
+   * @returns Promise<CommonResponseSchema>
+   */
+  public async mergeRecordings(
+    params: MergeRecordingsReq,
+  ): Promise<CommonResponse> {
+    const body = create(MergeRecordingsReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/recording/mergeRecordings',
+      toJsonString(MergeRecordingsReqSchema, body),
+    );
+    const output = create(CommonResponseSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
+    }
+
+    return fromJsonString(CommonResponseSchema, res.response);
   }
 
   /**

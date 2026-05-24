@@ -27,6 +27,7 @@ import {
   GetDownloadTokenRes,
   IsRoomActiveReq,
   IsRoomActiveRes,
+  MergeRecordingsReq,
   RecordingInfoReq,
   RecordingInfoRes,
   RoomEndReq,
@@ -154,6 +155,12 @@ export interface PlugNmeetAPI {
   updateRecordingMetadata(
     params: UpdateRecordingMetadataReq,
   ): Promise<UpdateRecordingMetadataRes>;
+  /**
+   * Merge multiple parts of a session's recording into a single new recording.
+   * @param params
+   * @returns Promise<CommonResponse>
+   */
+  mergeRecordings(params: MergeRecordingsReq): Promise<CommonResponse>;
   /**
    * Get recording details
    * @param params
