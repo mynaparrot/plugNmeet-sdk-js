@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.2.0](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.1.2...v2.2.0) (2026-05-30)
+
+
+### Features
+
+* added new `broadcastToRoom` and `uploadWhiteboardFile` API endpoints ([b3c1883](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/b3c1883797e08ec55217e442843756e741a3157d))
+* **API:** added new API endpoint `mergeRecordings` ([5d22578](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/5d2257860fbe637c11474d4501b735257cced587))
+
+
+### Bug Fixes
+
+* bump deps ([4bff9d5](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/4bff9d52453ea8e687b5a9816dac069e6fbfc308))
+* bump deps ([43018c6](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/43018c638322d7b06e0ed5227212e093ba6bb5d7))
+* bump proto ([d3be3e4](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/d3be3e4cedb950c3a3e83bdf17b457a4f74bb8e7))
+* bump proto ([07c71cb](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/07c71cb55d5a3eb7aadef15e795d960e24030b54))
+* bump proto with latest example ([b442558](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/b442558e22e343d29c7f5d536a2ac8225fb0daef))
+* ci error ([6383e72](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/6383e729f9bd50649c52d91559a942234da8beb7))
+* ci error ([346f7d3](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/346f7d39643661017eadf0c87a2892c05fcfb385))
+* type error ([9a6da0a](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/9a6da0a846f6b7b3130c51f77ae1658bdc5f4cb9))
+
 ## [2.1.2](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.1.1...v2.1.2) (2026-04-23)
 
 
