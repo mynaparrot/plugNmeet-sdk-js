@@ -40,7 +40,7 @@
     "@parcel/packager-ts": "2.16.4",
     "@parcel/transformer-typescript-types": "2.16.4",
     "@prettier/plugin-oxc": "0.1.4",
-    "@types/node": "25.9.1",
+    "@types/node": "25.9.5",
     "oxlint": "1.67.0",
     "parcel": "2.16.4",
     "prettier": "3.8.3",
