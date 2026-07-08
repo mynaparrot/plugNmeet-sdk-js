@@ -34,6 +34,7 @@ const {
         allowViewOtherUsersList: true,
         allowVirtualBg: true,
         allowRaiseHand: true,
+        allowReactions: true,
         enableAnalytics: true,
         roomDuration: '0', // 0 = no limit/unlimited
         recordingFeatures: {
