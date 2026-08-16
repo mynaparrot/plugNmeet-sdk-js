@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@bufbuild/protobuf':
-        specifier: 2.13.0
-        version: 2.13.0
+        specifier: 2.14.0
+        version: 2.14.0
       axios:
         specifier: 1.19.0
         version: 1.19.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
@@ -19,7 +19,7 @@ importers:
         version: 4.0.6
       plugnmeet-protocol-js:
         specifier: 1.5.0
-        version: 1.5.0(@bufbuild/protobuf@2.13.0)
+        version: 1.5.0(@bufbuild/protobuf@2.14.0)
     devDependencies:
       '@parcel/packager-ts':
         specifier: 2.16.4
@@ -51,8 +51,8 @@ importers:
 
 packages:
 
-  '@bufbuild/protobuf@2.13.0':
-    resolution: {integrity: sha512-acq7c49vxfm1ggJ95P70TX7ABDM0vxr1SYD3BB0o0jnBLB4OAqeHyKuN+cD3w80gXEDQ2zxHpR6CUeA+O/aU9g==}
+  '@bufbuild/protobuf@2.14.0':
+    resolution: {integrity: sha512-C3UGsiCwSprE2NKIIFA3hCDlpXTMCAXRZuEVp88L1GY36Y41+rYL5fryE+nOFhp4p4JPQvdV8PQ4DWgHgeTE+w==}
 
   '@emnapi/core@1.11.1':
     resolution: {integrity: sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ==}
@@ -1379,7 +1379,7 @@ packages:
 
 snapshots:
 
-  '@bufbuild/protobuf@2.13.0': {}
+  '@bufbuild/protobuf@2.14.0': {}
 
   '@emnapi/core@1.11.1':
     dependencies:
@@ -2742,9 +2742,9 @@ snapshots:
 
   picomatch@4.0.5: {}
 
-  plugnmeet-protocol-js@1.5.0(@bufbuild/protobuf@2.13.0):
+  plugnmeet-protocol-js@1.5.0(@bufbuild/protobuf@2.14.0):
     dependencies:
-      '@bufbuild/protobuf': 2.13.0
+      '@bufbuild/protobuf': 2.14.0
 
   postcss-value-parser@4.2.0: {}
 
