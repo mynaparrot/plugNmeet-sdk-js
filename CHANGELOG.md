@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.3](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.2.2...v2.2.3) (2026-09-10)
+
+
+### Bug Fixes
+
+* bump deps + new API `createPoll` ([8b8939d](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/8b8939dcc129345ab1fb530e44ec58d12cbf08de))
+
 ## [2.2.2](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.2.1...v2.2.2) (2026-08-11)
 
 
