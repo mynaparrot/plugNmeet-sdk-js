@@ -10,6 +10,10 @@ import {
   BroadcastToRoomReqSchema,
   CommonResponse,
   CommonResponseSchema,
+  CreatePollReq,
+  CreatePollReqSchema,
+  CreatePollRes,
+  CreatePollResSchema,
   CreateRoomReq,
   CreateRoomReqSchema,
   CreateRoomRes,
@@ -306,6 +310,27 @@ export class PlugNmeet implements PlugNmeetAPI {
     }
 
     return fromJsonString(CommonResponseSchema, res.response);
+  }
+
+  /**
+   * Allows your backend server to push a complete poll into an active Plug-N-Meet session in real time.
+   * @param params
+   * @returns Promise<CreatePollRes>
+   */
+  public async createPoll(params: CreatePollReq): Promise<CreatePollRes> {
+    const body = create(CreatePollReqSchema, params);
+    const res = await this.apiTransport.sendRequest(
+      '/room/createPoll',
+      toJsonString(CreatePollReqSchema, body),
+    );
+    const output = create(CreatePollResSchema);
+
+    if (!res.status) {
+      output.msg = res.response;
+      return output;
+    }
+
+    return fromJsonString(CreatePollResSchema, res.response);
   }
 
   /**

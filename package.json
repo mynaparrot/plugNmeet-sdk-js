@@ -31,20 +31,20 @@
     }
   },
   "dependencies": {
-    "@bufbuild/protobuf": "2.13.0",
-    "axios": "1.19.0",
+    "@bufbuild/protobuf": "2.14.1",
+    "axios": "1.20.0",
     "form-data": "4.0.6",
-    "plugnmeet-protocol-js": "1.5.0"
+    "plugnmeet-protocol-js": "1.6.1"
   },
   "devDependencies": {
     "@parcel/packager-ts": "2.16.4",
     "@parcel/transformer-typescript-types": "2.16.4",
     "@prettier/plugin-oxc": "0.2.2",
     "@types/node": "26.2.0",
-    "oxlint": "1.78.0",
+    "oxlint": "1.82.0",
     "parcel": "2.16.4",
     "prettier": "3.9.6",
     "typedoc": "0.28.20",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   }
 }

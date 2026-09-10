@@ -3,6 +3,8 @@ import {
   ArtifactInfoRes,
   BroadcastToRoomReq,
   CommonResponse,
+  CreatePollReq,
+  CreatePollRes,
   CreateRoomReq,
   CreateRoomRes,
   DeleteArtifactReq,
@@ -93,6 +95,12 @@ export interface PlugNmeetAPI {
    * @returns Promise<CommonResponse>
    */
   broadcastToRoom(params: BroadcastToRoomReq): Promise<CommonResponse>;
+  /**
+   * Allows your backend server to push a complete poll into an active Plug-N-Meet session in real time.
+   * @param params
+   * @returns Promise<CreatePollRes>
+   */
+  createPoll(params: CreatePollReq): Promise<CreatePollRes>;
   /**
    * Upload a file to be used on the whiteboard.
    * @param params
