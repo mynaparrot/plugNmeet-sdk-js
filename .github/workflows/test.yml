@@ -34,3 +34,28 @@ jobs:
         run: pnpm build
       - name: Test
         run: pnpm test
+
+  deno:
+    name: Deno typecheck and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: 2.9.8
+      - uses: pnpm/action-setup@v6
+        name: Install pnpm
+        with:
+          version: 12
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24.x
+          cache: pnpm
+      # Deno resolves the npm dependencies from node_modules (see deno.json),
+      # so this job needs its own install and stays independent of the Node job.
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Deno typecheck
+        run: deno task check
+      - name: Deno test
+        run: deno task test

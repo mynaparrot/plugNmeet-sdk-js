@@ -1,0 +1,7 @@
+{
+  "nodeModulesDir": "manual",
+  "tasks": {
+    "check": "deno check --sloppy-imports src/index.ts tests/*.test.ts",
+    "test": "deno run --sloppy-imports -A npm:vitest run"
+  }
+}
