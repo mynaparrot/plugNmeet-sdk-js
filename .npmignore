@@ -4,8 +4,8 @@ tslint.json
 .prettierrc.json
 .oxlintrc.json
 .DS_Store
-.parcel-cache
 node_modules/
 src/
 examples/
 docs/
+test/

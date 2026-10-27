@@ -7,4 +7,4 @@ dist
 node_modules/
 docs/
 .DS_Store
-.parcel-cache
+.ai*

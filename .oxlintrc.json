@@ -28,6 +28,12 @@
         "no-array-sort": "off",
         "no-array-reverse": "off"
       }
+    },
+    {
+      "files": ["tests/**/*.{ts,jsx,tsx}"],
+      "env": {
+        "node": true
+      }
     }
   ]
 }

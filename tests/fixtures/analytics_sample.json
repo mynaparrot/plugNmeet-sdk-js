@@ -1,0 +1,341 @@
+{
+  "room": {
+    "room_id": "11111111-2222-3333-4444-555555555555",
+    "room_title": "Sample Classroom",
+    "room_total_users": "2",
+    "room_creation": "1792760259",
+    "room_ended": "1792763655",
+    "room_duration": "3396",
+    "enabled_e2ee": false,
+    "events": []
+  },
+  "users": [
+    {
+      "user_id": "22222222-3333-4444-5555-666666666666",
+      "name": "User One",
+      "is_admin": false,
+      "ex_user_id": "sample-ex-user-1",
+      "events": [
+        {
+          "name": "joined",
+          "total": 1,
+          "values": [
+            {
+              "time": "1792760384117",
+              "value": "1792760384117"
+            }
+          ]
+        },
+        {
+          "name": "mic_status",
+          "total": 2,
+          "values": [
+            {
+              "time": "1792760392693",
+              "value": "ANALYTICS_STATUS_STARTED"
+            },
+            {
+              "time": "1792763652995",
+              "value": "ANALYTICS_STATUS_ENDED"
+            }
+          ]
+        },
+        {
+          "name": "connection_quality",
+          "total": 1,
+          "values": [
+            {
+              "time": "1792760386557",
+              "value": "excellent"
+            }
+          ]
+        },
+        {
+          "name": "talked",
+          "total": 557,
+          "values": []
+        },
+        {
+          "name": "talked_duration",
+          "total": 585411,
+          "values": []
+        },
+        {
+          "name": "left",
+          "total": 1,
+          "values": [
+            {
+              "time": "1792763652973",
+              "value": "1792763652973"
+            }
+          ]
+        },
+        {
+          "name": "webcam_status",
+          "total": 2,
+          "values": [
+            {
+              "time": "1792760402796",
+              "value": "ANALYTICS_STATUS_STARTED"
+            },
+            {
+              "time": "1792763653016",
+              "value": "ANALYTICS_STATUS_ENDED"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "user_id": "33333333-4444-5555-6666-777777777777",
+      "name": "User Two",
+      "is_admin": true,
+      "ex_user_id": "sample-ex-user-2",
+      "events": [
+        {
+          "name": "talked_duration",
+          "total": 1010894,
+          "values": []
+        },
+        {
+          "name": "joined",
+          "total": 1,
+          "values": [
+            {
+              "time": "1792760345497",
+              "value": "1792760345497"
+            }
+          ]
+        },
+        {
+          "name": "talked",
+          "total": 730,
+          "values": []
+        },
+        {
+          "name": "left",
+          "total": 1,
+          "values": [
+            {
+              "time": "1792763654951",
+              "value": "1792763654951"
+            }
+          ]
+        },
+        {
+          "name": "interface_visibility",
+          "total": 9,
+          "values": [
+            {
+              "time": "1792760345772",
+              "value": "visible"
+            },
+            {
+              "time": "1792760347789",
+              "value": "hidden"
+            },
+            {
+              "time": "1792760350237",
+              "value": "visible"
+            },
+            {
+              "time": "1792760524043",
+              "value": "hidden"
+            },
+            {
+              "time": "1792760524516",
+              "value": "visible"
+            },
+            {
+              "time": "1792760834700",
+              "value": "hidden"
+            },
+            {
+              "time": "1792760835143",
+              "value": "visible"
+            },
+            {
+              "time": "1792761441362",
+              "value": "hidden"
+            },
+            {
+              "time": "1792761458055",
+              "value": "visible"
+            }
+          ]
+        },
+        {
+          "name": "public_chat",
+          "total": 53,
+          "values": []
+        },
+        {
+          "name": "connection_quality",
+          "total": 31,
+          "values": [
+            {
+              "time": "1792760452366",
+              "value": "poor"
+            },
+            {
+              "time": "1792761103103",
+              "value": "poor"
+            },
+            {
+              "time": "1792762684634",
+              "value": "excellent"
+            },
+            {
+              "time": "1792763100000",
+              "value": "poor"
+            },
+            {
+              "time": "1792760377149",
+              "value": "excellent"
+            },
+            {
+              "time": "1792760417279",
+              "value": "good"
+            },
+            {
+              "time": "1792763365281",
+              "value": "good"
+            },
+            {
+              "time": "1792762314875",
+              "value": "good"
+            },
+            {
+              "time": "1792762679708",
+              "value": "good"
+            },
+            {
+              "time": "1792763350393",
+              "value": "excellent"
+            },
+            {
+              "time": "1792760351970",
+              "value": "good"
+            },
+            {
+              "time": "1792760457237",
+              "value": "excellent"
+            },
+            {
+              "time": "1792762569456",
+              "value": "excellent"
+            },
+            {
+              "time": "1792760422482",
+              "value": "excellent"
+            },
+            {
+              "time": "1792761708560",
+              "value": "good"
+            },
+            {
+              "time": "1792762564464",
+              "value": "poor"
+            },
+            {
+              "time": "1792762649550",
+              "value": "good"
+            },
+            {
+              "time": "1792763104991",
+              "value": "good"
+            },
+            {
+              "time": "1792763110001",
+              "value": "excellent"
+            },
+            {
+              "time": "1792760357122",
+              "value": "excellent"
+            },
+            {
+              "time": "1792762319182",
+              "value": "excellent"
+            },
+            {
+              "time": "1792762654567",
+              "value": "excellent"
+            },
+            {
+              "time": "1792763345240",
+              "value": "good"
+            },
+            {
+              "time": "1792760372143",
+              "value": "good"
+            },
+            {
+              "time": "1792761107914",
+              "value": "excellent"
+            },
+            {
+              "time": "1792761713543",
+              "value": "excellent"
+            },
+            {
+              "time": "1792763190173",
+              "value": "good"
+            },
+            {
+              "time": "1792763195050",
+              "value": "excellent"
+            },
+            {
+              "time": "1792763375292",
+              "value": "excellent"
+            },
+            {
+              "time": "1792761298128",
+              "value": "poor"
+            },
+            {
+              "time": "1792761303164",
+              "value": "excellent"
+            }
+          ]
+        },
+        {
+          "name": "mic_status",
+          "total": 4,
+          "values": [
+            {
+              "time": "1792760358829",
+              "value": "ANALYTICS_STATUS_STARTED"
+            },
+            {
+              "time": "1792760552894",
+              "value": "ANALYTICS_STATUS_MUTED"
+            },
+            {
+              "time": "1792760566749",
+              "value": "ANALYTICS_STATUS_UNMUTED"
+            },
+            {
+              "time": "1792763654989",
+              "value": "ANALYTICS_STATUS_ENDED"
+            }
+          ]
+        },
+        {
+          "name": "webcam_status",
+          "total": 2,
+          "values": [
+            {
+              "time": "1792760368243",
+              "value": "ANALYTICS_STATUS_STARTED"
+            },
+            {
+              "time": "1792763654991",
+              "value": "ANALYTICS_STATUS_ENDED"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
