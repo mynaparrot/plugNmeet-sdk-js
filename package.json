@@ -39,7 +39,7 @@
     "@bufbuild/protobuf": "2.16.0",
     "axios": "1.21.0",
     "form-data": "4.0.6",
-    "plugnmeet-protocol-js": "1.6.3-5"
+    "plugnmeet-protocol-js": "1.6.3"
   },
   "devDependencies": {
     "@prettier/plugin-oxc": "0.2.3",

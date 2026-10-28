@@ -18,8 +18,8 @@ importers:
         specifier: 4.0.6
         version: 4.0.6
       plugnmeet-protocol-js:
-        specifier: 1.6.3-5
-        version: 1.6.3-5(@bufbuild/protobuf@2.16.0)
+        specifier: 1.6.3
+        version: 1.6.3(@bufbuild/protobuf@2.16.0)
     devDependencies:
       '@prettier/plugin-oxc':
         specifier: 0.2.3
@@ -864,8 +864,8 @@ packages:
   pkg-types@2.4.0:
     resolution: {integrity: sha512-07Fys7iVx0X6TcviMOgogM1Lk33ZyqOezMnU79S+kffWqwolG/5W9V8EgQSeYCIfFTYVgssRbnH630Oa2+soBA==}
 
-  plugnmeet-protocol-js@1.6.3-5:
-    resolution: {integrity: sha512-TwquMGXFxs1zDPgXF091qT+gonKa6hr78YOsC7m/4oU9Q2AqRAWG0lHPaBU1MeEG4A97c7329iWjWY2eEoZg1w==}
+  plugnmeet-protocol-js@1.6.3:
+    resolution: {integrity: sha512-U9aCFEbJn+aLCFrNAIiLc4673Htn+bztsLcbjpkQ0VErPKyBOFwXelYXz+wU7wsOymPoK2HmgvrC3t+wlcmjKg==}
     engines: {node: '>=22.7'}
     peerDependencies:
       '@bufbuild/protobuf': ^2.13.0
@@ -1738,7 +1738,7 @@ snapshots:
       exsolve: 1.2.0
       pathe: 2.0.3
 
-  plugnmeet-protocol-js@1.6.3-5(@bufbuild/protobuf@2.16.0):
+  plugnmeet-protocol-js@1.6.3(@bufbuild/protobuf@2.16.0):
     dependencies:
       '@bufbuild/protobuf': 2.16.0
 
