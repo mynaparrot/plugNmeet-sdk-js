@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.3.0](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.2.3...v2.3.0) (2026-10-28)
+
+
+### Features
+
+* add AnalyticsFormatter and migrate SDK build to Vite ([1d0968e](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/1d0968ef5d834947ae98a7b3afb72e3f21173508))
+* consolidate Deno support and add package exports ([c6e3a05](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/c6e3a051281aa67bee4cf7aa9d438ef63e00fb1b))
+
+
+### Bug Fixes
+
+* bump proto ([16e3b63](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/16e3b6368ec26531098077aedee3d7d43b271c1c))
+
 ## [2.2.3](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.2.2...v2.2.3) (2026-09-10)
 
 
