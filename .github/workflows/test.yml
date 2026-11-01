@@ -22,7 +22,7 @@ jobs:
           version: 12
       - uses: actions/setup-node@v7
         with:
-          node-version: 24.x
+          node-version: 26.x
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -49,7 +49,7 @@ jobs:
           version: 12
       - uses: actions/setup-node@v7
         with:
-          node-version: 24.x
+          node-version: 26.x
           cache: pnpm
       # Deno resolves the npm dependencies from node_modules (see deno.json),
       # so this job needs its own install and stays independent of the Node job.
