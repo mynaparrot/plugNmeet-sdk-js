@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@bufbuild/protobuf':
-        specifier: 2.16.0
-        version: 2.16.0
+        specifier: 2.17.0
+        version: 2.17.0
       axios:
         specifier: 1.21.0
         version: 1.21.0(debug@4.4.3)
@@ -19,7 +19,7 @@ importers:
         version: 4.0.6
       plugnmeet-protocol-js:
         specifier: 1.6.3
-        version: 1.6.3(@bufbuild/protobuf@2.16.0)
+        version: 1.6.3(@bufbuild/protobuf@2.17.0)
     devDependencies:
       '@prettier/plugin-oxc':
         specifier: 0.2.3
@@ -51,8 +51,8 @@ importers:
 
 packages:
 
-  '@bufbuild/protobuf@2.16.0':
-    resolution: {integrity: sha512-FWa0sPlqYGJgpTs6OxBRcL/AW4JT0OIO+W1ajerluoTVh8CV0B7XM1qsNCRgnkSCkRCgOICKHRQlY17jrsm0+Q==}
+  '@bufbuild/protobuf@2.17.0':
+    resolution: {integrity: sha512-hcPkSz6D7MiTU/5VBBhK+kxaYDoOdQ6yJRFJ3kS8Nydp+VZXfg1vrpABKPNod8bXMufsVCmiUJVIKFzCzta4uw==}
 
   '@emnapi/core@1.11.1':
     resolution: {integrity: sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ==}
@@ -1101,7 +1101,7 @@ packages:
 
 snapshots:
 
-  '@bufbuild/protobuf@2.16.0': {}
+  '@bufbuild/protobuf@2.17.0': {}
 
   '@emnapi/core@1.11.1':
     dependencies:
@@ -1738,9 +1738,9 @@ snapshots:
       exsolve: 1.2.0
       pathe: 2.0.3
 
-  plugnmeet-protocol-js@1.6.3(@bufbuild/protobuf@2.16.0):
+  plugnmeet-protocol-js@1.6.3(@bufbuild/protobuf@2.17.0):
     dependencies:
-      '@bufbuild/protobuf': 2.16.0
+      '@bufbuild/protobuf': 2.17.0
 
   postcss@8.5.32:
     dependencies:
