@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.3.0...v2.3.1) (2026-11-08)
+
+
+### Bug Fixes
+
+* propagate CommonResponse status codes on API errors ([e8cbdfa](https://github.com/mynaparrot/plugNmeet-sdk-js/commit/e8cbdfab207c4031407d70b90f7a1718ed3cab3c))
+
 ## [2.3.0](https://github.com/mynaparrot/plugNmeet-sdk-js/compare/v2.2.3...v2.3.0) (2026-10-28)
 
 
