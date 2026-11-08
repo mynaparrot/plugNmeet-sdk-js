@@ -113,7 +113,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(CreateRoomResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -136,7 +138,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(GenerateTokenResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -157,7 +161,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(IsRoomActiveResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -180,7 +186,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(GetActiveRoomInfoResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -199,7 +207,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(GetActiveRoomsInfoResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -222,7 +232,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(FetchPastRoomsResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -243,7 +255,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(RoomEndResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -266,7 +280,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(CommonResponseSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -305,7 +321,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     );
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -326,6 +344,7 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(CreatePollResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
       return output;
     }
@@ -349,7 +368,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(FetchArtifactsResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -372,7 +393,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(DeleteArtifactResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -395,7 +418,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(GetArtifactDownloadTokenResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -418,7 +443,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(ArtifactInfoResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -441,7 +468,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(FetchRecordingsResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -464,7 +493,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(DeleteRecordingResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -487,7 +518,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(GetDownloadTokenResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -510,7 +543,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(UpdateRecordingMetadataResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -533,7 +568,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(CommonResponseSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -556,7 +593,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(RecordingInfoResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 
@@ -572,7 +611,9 @@ export class PlugNmeet implements PlugNmeetAPI {
     const output = create(GetClientFilesResSchema);
 
     if (!res.status) {
+      output.status = false;
       output.msg = res.response;
+      output.statusCode = res.status_code;
       return output;
     }
 

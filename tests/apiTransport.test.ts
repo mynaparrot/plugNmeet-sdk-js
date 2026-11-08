@@ -1,6 +1,7 @@
 import { createHmac } from 'node:crypto';
 
 import FormData from 'form-data';
+import { StatusCode } from 'plugnmeet-protocol-js';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ApiTransport } from '../src/ApiTransport';
@@ -42,7 +43,11 @@ describe('ApiTransport.sendRequest', () => {
       'API-KEY': API_KEY,
       'HASH-SIGNATURE': sign(body),
     });
-    expect(result).toEqual({ status: true, response: raw });
+    expect(result).toEqual({
+      status: true,
+      response: raw,
+      status_code: StatusCode.UNKNOWN_STATUS,
+    });
   });
 
   it('falls back to error.message when the request fails', async () => {
@@ -53,12 +58,15 @@ describe('ApiTransport.sendRequest', () => {
     expect(result).toEqual({
       status: false,
       response: 'connect ECONNREFUSED',
+      status_code: StatusCode.UNKNOWN_STATUS,
     });
   });
 
-  it('prefers error.response.data when the server answers', async () => {
+  it('decodes the msg from a CommonResponse error body', async () => {
     const error = Object.assign(new Error('Request failed'), {
-      response: { data: '{"status":false,"msg":"denied"}' },
+      response: {
+        data: '{"status":false,"msg":"The room was not found.","status_code":"ROOM_NOT_FOUND"}',
+      },
     });
     post.mockRejectedValue(error);
 
@@ -66,7 +74,23 @@ describe('ApiTransport.sendRequest', () => {
 
     expect(result).toEqual({
       status: false,
-      response: '{"status":false,"msg":"denied"}',
+      response: 'The room was not found.',
+      status_code: StatusCode.ROOM_NOT_FOUND,
+    });
+  });
+
+  it('falls back to the raw body when it is not a CommonResponse', async () => {
+    const error = Object.assign(new Error('Request failed'), {
+      response: { data: '<html>Bad Gateway</html>' },
+    });
+    post.mockRejectedValue(error);
+
+    const result = await createTransport().sendRequest('/room/create', '{}');
+
+    expect(result).toEqual({
+      status: false,
+      response: '<html>Bad Gateway</html>',
+      status_code: StatusCode.UNKNOWN_STATUS,
     });
   });
 });
@@ -99,7 +123,11 @@ describe('ApiTransport.sendMultipartRequest', () => {
     expect(config.headers['content-type']).toMatch(
       /^multipart\/form-data; boundary=/,
     );
-    expect(result).toEqual({ status: true, response: raw });
+    expect(result).toEqual({
+      status: true,
+      response: raw,
+      status_code: StatusCode.UNKNOWN_STATUS,
+    });
   });
 
   it('decodes the response message when the request fails', async () => {
@@ -114,6 +142,50 @@ describe('ApiTransport.sendMultipartRequest', () => {
       new FormData(),
     );
 
-    expect(result).toEqual({ status: false, response: 'upload denied' });
+    expect(result).toEqual({
+      status: false,
+      response: 'upload denied',
+      status_code: StatusCode.UNKNOWN_STATUS,
+    });
+  });
+
+  it('decodes the status code from a CommonResponse error body', async () => {
+    const error = Object.assign(new Error('Request failed'), {
+      response: {
+        data: '{"status":false,"msg":"The room was not found.","status_code":"ROOM_NOT_FOUND"}',
+      },
+    });
+    post.mockRejectedValue(error);
+
+    const result = await createTransport().sendMultipartRequest(
+      '/room/uploadWhiteboardFile',
+      'room-1',
+      new FormData(),
+    );
+
+    expect(result).toEqual({
+      status: false,
+      response: 'The room was not found.',
+      status_code: StatusCode.ROOM_NOT_FOUND,
+    });
+  });
+
+  it('falls back to the raw body when a multipart error is not JSON', async () => {
+    const error = Object.assign(new Error('Request failed'), {
+      response: { data: 'upstream unavailable' },
+    });
+    post.mockRejectedValue(error);
+
+    const result = await createTransport().sendMultipartRequest(
+      '/room/uploadWhiteboardFile',
+      'room-1',
+      new FormData(),
+    );
+
+    expect(result).toEqual({
+      status: false,
+      response: 'upstream unavailable',
+      status_code: StatusCode.UNKNOWN_STATUS,
+    });
   });
 });

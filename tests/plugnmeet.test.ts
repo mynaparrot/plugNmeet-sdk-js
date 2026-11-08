@@ -1,9 +1,11 @@
 import { create } from '@bufbuild/protobuf';
 import {
+  CreatePollReqSchema,
   CreateRoomReqSchema,
   GenerateTokenReqSchema,
   IsRoomActiveReqSchema,
   RoomEndReqSchema,
+  StatusCode,
   UserInfoSchema,
 } from 'plugnmeet-protocol-js';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -101,5 +103,102 @@ describe('PlugNmeet', () => {
     expect(path).toBe('/room/isRoomActive');
     expect(result.status).toBe(false);
     expect(result.msg).toBe('invalid signature');
+    expect(result.statusCode).toBe(StatusCode.UNKNOWN_STATUS);
+  });
+
+  it('propagates the CommonResponse status code from an error body', async () => {
+    const error = Object.assign(new Error('Request failed'), {
+      response: {
+        data: '{"status":false,"msg":"The room was not found.","status_code":"ROOM_NOT_FOUND"}',
+      },
+    });
+    post.mockRejectedValue(error);
+
+    const result = await createClient().isRoomActive(
+      create(IsRoomActiveReqSchema, { roomId: 'room-1' }),
+    );
+
+    expect(result.status).toBe(false);
+    expect(result.msg).toBe('The room was not found.');
+    expect(result.statusCode).toBe(StatusCode.ROOM_NOT_FOUND);
+  });
+
+  it('keeps a CommonResponse error returned with HTTP 200', async () => {
+    post.mockResolvedValue({
+      data: '{"status":false,"msg":"The room was not found.","status_code":"ROOM_NOT_FOUND"}',
+    });
+
+    const result = await createClient().isRoomActive(
+      create(IsRoomActiveReqSchema, { roomId: 'room-1' }),
+    );
+
+    expect(result.status).toBe(false);
+    expect(result.msg).toBe('The room was not found.');
+    expect(result.statusCode).toBe(StatusCode.ROOM_NOT_FOUND);
+  });
+
+  it('propagates errors from parameterless endpoints', async () => {
+    const error = Object.assign(new Error('Request failed'), {
+      response: {
+        data: '{"status":false,"msg":"Permission denied","status_code":"PERMISSION_DENIED"}',
+      },
+    });
+    post.mockRejectedValue(error);
+
+    const result = await createClient().getActiveRoomsInfo();
+
+    const [path, body] = post.mock.calls[0];
+    expect(path).toBe('/room/getActiveRoomsInfo');
+    expect(body).toBe('{}');
+    expect(result.status).toBe(false);
+    expect(result.msg).toBe('Permission denied');
+    expect(result.statusCode).toBe(StatusCode.PERMISSION_DENIED);
+  });
+
+  it('rejects uploads without a file source before calling the server', async () => {
+    const result = await createClient().uploadWhiteboardFile({
+      roomId: 'room-1',
+    });
+
+    expect(post).not.toHaveBeenCalled();
+    expect(result.status).toBe(false);
+    expect(result.msg).toBe('Either filePath or document_link is required');
+    expect(result.statusCode).toBe(StatusCode.INVALID_PARAMETERS);
+  });
+
+  it('replaces the upload validation code with the server error code', async () => {
+    const error = Object.assign(new Error('Request failed'), {
+      response: {
+        data: '{"status":false,"msg":"The room was not found.","status_code":"ROOM_NOT_FOUND"}',
+      },
+    });
+    post.mockRejectedValue(error);
+
+    const result = await createClient().uploadWhiteboardFile({
+      roomId: 'room-1',
+      document_link: 'https://example.com/doc.pdf',
+    });
+
+    expect(result.status).toBe(false);
+    expect(result.msg).toBe('The room was not found.');
+    expect(result.statusCode).toBe(StatusCode.ROOM_NOT_FOUND);
+  });
+
+  it('only exposes status and msg for createPoll errors', async () => {
+    const error = Object.assign(new Error('Request failed'), {
+      response: {
+        data: '{"status":false,"msg":"The room was not found.","status_code":"ROOM_NOT_FOUND"}',
+      },
+    });
+    post.mockRejectedValue(error);
+
+    const result = await createClient().createPoll(
+      create(CreatePollReqSchema, { roomId: 'room-1' }),
+    );
+
+    // CreatePollRes does not define status_code in the protocol.
+    expect(result.status).toBe(false);
+    expect(result.msg).toBe('The room was not found.');
+    expect(result).not.toHaveProperty('statusCode');
   });
 });
